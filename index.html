@@ -261,6 +261,25 @@
   #admSaveMsg{font-size:0.85rem; margin-bottom:12px; padding:10px 14px; border-radius:8px; display:none;}
   #admSaveMsg.ok{display:block; background:var(--accent-tint); color:var(--accent-deep);}
   #admSaveMsg.no{display:block; background:#EDE0E0; color:#8A3B3B;}
+
+  /* ---- submissions list in admin panel ---- */
+  .subs-list{display:flex; flex-direction:column; gap:12px;}
+  .sub-item{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 18px; font-size:0.88rem;
+  }
+  .sub-item .sub-top{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;}
+  .sub-item .sub-top b{font-family:'M PLUS Rounded 1c',sans-serif; font-size:1rem;}
+  .sub-item .sub-time{color:var(--ink-soft); font-size:0.78rem;}
+  .sub-item dl{display:grid; grid-template-columns:64px 1fr; gap:5px 10px; margin:12px 0 0; font-size:0.85rem;}
+  .sub-item dt{color:var(--ink-soft);}
+  .sub-item dd{margin:0; word-break:break-word;}
+  .sub-item .sub-actions{margin-top:12px;}
+  .sub-delete{
+    background:none; border:1px solid var(--line); border-radius:16px; padding:5px 12px;
+    font-size:0.78rem; color:var(--ink-soft); cursor:pointer;
+  }
+  .subs-empty{color:var(--ink-soft); font-size:0.88rem; text-align:center; padding:20px 0;}
 </style>
 </head>
 <body>
@@ -599,6 +618,12 @@
           </div>
         </div>
         <p class="cal-note">點日期只會先在畫面上切換顏色，記得改完要按上面「儲存變更」才會真的更新到上方的檔期確認。</p>
+
+        <div class="admin-save-row" style="margin-top:44px;">
+          <h2 style="font-size:1.15rem;">預約表單記錄</h2>
+          <button class="btn btn-ghost" id="admRefreshSubs" type="button">重新整理</button>
+        </div>
+        <div id="admSubsList" class="subs-list"></div>
       </div>
     </div>
   </section>
@@ -751,20 +776,45 @@
   renderCalendar();
   loadBookedDates();
 
-  // ---- booking form: submit via AJAX so we can show an inline success message ----
+  // ---- booking form: submit via AJAX, store in our own submissions list ----
   const bookingForm = document.getElementById('bookingForm');
   const formSuccess = document.getElementById('formSuccess');
   bookingForm.addEventListener('submit', function(e){
     e.preventDefault();
     const formData = new FormData(bookingForm);
+
+    // 同時嘗試送給 Netlify 內建表單（如果之後有偵測到，就能收到 Email 通知），失敗也沒關係，不影響主流程
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams(formData).toString()
-    }).then(() => {
-      bookingForm.style.display = 'none';
-      formSuccess.style.display = 'block';
-      formSuccess.scrollIntoView({behavior:'smooth', block:'start'});
+    }).catch(() => {});
+
+    const payload = {
+      action: 'create',
+      name: formData.get('name'),
+      phone: formData.get('phone'),
+      lineid: formData.get('lineid'),
+      device: formData.get('device'),
+      startdate: formData.get('startdate'),
+      days: formData.get('days'),
+      region: formData.get('region'),
+      idtype: formData.get('idtype'),
+      note: formData.get('note')
+    };
+
+    fetch('/.netlify/functions/submissions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(res => {
+      if(res.ok){
+        bookingForm.style.display = 'none';
+        formSuccess.style.display = 'block';
+        formSuccess.scrollIntoView({behavior:'smooth', block:'start'});
+      } else {
+        alert('送出失敗，請檢查網路連線後再試一次，或直接透過 LINE 聯繫我們。');
+      }
     }).catch(() => {
       alert('送出失敗，請檢查網路連線後再試一次，或直接透過 LINE 聯繫我們。');
     });
@@ -790,6 +840,7 @@
       document.getElementById('adminGate').style.display = 'none';
       document.getElementById('adminPanel').style.display = 'block';
       admLoadBookings();
+      admLoadSubmissions();
     } else {
       document.getElementById('adminError').style.display = 'block';
     }
@@ -891,6 +942,90 @@
     msg.style.display = 'block';
     btn.disabled = false;
   });
+
+  // ---- submissions list ----
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  async function admLoadSubmissions(){
+    const container = document.getElementById('admSubsList');
+    container.innerHTML = '<p class="subs-empty">載入中...</p>';
+    try {
+      const res = await fetch('/.netlify/functions/submissions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'list', password: ADMIN_PASSWORD })
+      });
+      if(!res.ok){
+        container.innerHTML = '<p class="subs-empty">讀取失敗，請重新整理再試一次。</p>';
+        return;
+      }
+      const data = await res.json();
+      renderSubmissions(data.submissions || []);
+    } catch(err){
+      container.innerHTML = '<p class="subs-empty">讀取失敗，請檢查網路連線。</p>';
+    }
+  }
+
+  function renderSubmissions(list){
+    const container = document.getElementById('admSubsList');
+    container.innerHTML = '';
+    if(list.length === 0){
+      container.innerHTML = '<p class="subs-empty">目前還沒有預約資料。</p>';
+      return;
+    }
+    list.forEach(s => {
+      const div = document.createElement('div');
+      div.className = 'sub-item';
+      const t = new Date(s.receivedAt);
+      const timeStr = `${t.getFullYear()}/${t.getMonth() + 1}/${t.getDate()} ${String(t.getHours()).padStart(2,'0')}:${String(t.getMinutes()).padStart(2,'0')}`;
+      div.innerHTML = `
+        <div class="sub-top">
+          <b>${escapeHtml(s.name)}</b>
+          <span class="sub-time">${timeStr}</span>
+        </div>
+        <dl>
+          <dt>電話</dt><dd>${escapeHtml(s.phone)}</dd>
+          <dt>LINE ID</dt><dd>${escapeHtml(s.lineid)}</dd>
+          <dt>機型</dt><dd>${escapeHtml(s.device)}</dd>
+          <dt>起始日</dt><dd>${escapeHtml(s.startdate) || '未填'}</dd>
+          <dt>天數</dt><dd>${escapeHtml(s.days) || '未填'}</dd>
+          <dt>地區</dt><dd>${s.region === 'overseas' ? '國外' : '國內'}</dd>
+          <dt>證件</dt><dd>${escapeHtml(s.idtype)}</dd>
+          <dt>備註</dt><dd>${escapeHtml(s.note) || '無'}</dd>
+        </dl>
+        <div class="sub-actions">
+          <button class="sub-delete" data-id="${s.id}" type="button">刪除這筆</button>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+
+    container.querySelectorAll('.sub-delete').forEach(delBtn => {
+      delBtn.addEventListener('click', async () => {
+        if(!confirm('確定要刪除這筆預約紀錄嗎？')) return;
+        try {
+          const res = await fetch('/.netlify/functions/submissions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'delete', password: ADMIN_PASSWORD, id: delBtn.dataset.id })
+          });
+          if(res.ok){
+            admLoadSubmissions();
+          } else {
+            alert('刪除失敗，請稍後再試一次。');
+          }
+        } catch(err){
+          alert('刪除失敗，請檢查網路連線。');
+        }
+      });
+    });
+  }
+
+  document.getElementById('admRefreshSubs').addEventListener('click', admLoadSubmissions);
 </script>
 
 </body>
