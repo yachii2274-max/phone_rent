@@ -235,6 +235,32 @@
   }
 
   footer{border-top:1px solid var(--line); padding:36px 0; font-size:0.82rem; color:var(--ink-soft);}
+
+  /* ---- embedded admin panel ---- */
+  .admin-section{padding:40px 0 64px;}
+  .admin-toggle-wrap{text-align:center;}
+  .admin-toggle-link{
+    background:none; border:none; color:var(--ink-soft); font-size:0.8rem;
+    text-decoration:underline; cursor:pointer; font-family:'Noto Sans TC',sans-serif; padding:6px;
+  }
+  .admin-gate{
+    max-width:320px; margin:0 auto; background:var(--surface); border:1px solid var(--line);
+    border-radius:var(--radius); padding:28px; text-align:center;
+  }
+  .admin-gate input{
+    width:100%; margin-top:16px; padding:10px 12px; border:1px solid var(--line); border-radius:8px;
+    font-size:1rem; text-align:center; letter-spacing:0.3em;
+  }
+  .admin-gate button{
+    margin-top:12px; width:100%; padding:11px; border:none; border-radius:24px;
+    background:var(--accent); color:#fff; font-family:'M PLUS Rounded 1c',sans-serif; font-weight:700; cursor:pointer;
+  }
+  #adminError{color:#8A3B3B; font-size:0.82rem; margin-top:8px; display:none;}
+  .admin-panel-inner{max-width:640px; margin:0 auto;}
+  .admin-save-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;}
+  #admSaveMsg{font-size:0.85rem; margin-bottom:12px; padding:10px 14px; border-radius:8px; display:none;}
+  #admSaveMsg.ok{display:block; background:var(--accent-tint); color:var(--accent-deep);}
+  #admSaveMsg.no{display:block; background:#EDE0E0; color:#8A3B3B;}
 </style>
 </head>
 <body>
@@ -457,7 +483,7 @@
         <h2>確認出租表填寫</h2>
         <p>先在上方確認好空檔日期，再填寫以下資料。送出後請務必加 LINE 私訊，雙方確認後才算完成預訂。</p>
       </div>
-      <form class="form-card" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <form class="form-card" id="bookingForm" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="booking">
         <p class="honeypot"><label>請勿填寫此欄 <input name="bot-field"></label></p>
 
@@ -525,10 +551,54 @@
         <p class="form-note">送出表單僅代表提出預訂需求，實際檔期仍以雙方於 LINE 確認為準。</p>
       </form>
 
-      <div class="line-card">
-        <h3>最後一步：加 LINE 私訊確認細節</h3>
-        <p>表單送出後，請務必加官方 LINE 帳號，告知你送出的租借時間與機型，雙方確認沒問題才算完成預訂。</p>
+      <div class="line-card" id="formSuccess" style="display:none;">
+        <h3>已收到表單，請私訊確認</h3>
+        <p>你的預約資料已經收到了。請務必加官方 LINE 帳號私訊，告知你剛剛送出的租借時間與機型，雙方確認沒問題才算完成預訂。</p>
         <a class="line-btn" href="https://line.me/ti/p/~請替換成你的LINE官方帳號ID" target="_blank" rel="noopener">加 LINE 好友確認</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="admin-section" id="adminSection">
+    <div class="wrap">
+      <div class="admin-toggle-wrap" id="adminToggleWrap">
+        <button class="admin-toggle-link" id="adminToggleBtn" type="button">站長登入</button>
+      </div>
+
+      <div class="admin-gate" id="adminGate" style="display:none;">
+        <h3 style="font-size:1.05rem;">後台登入</h3>
+        <p style="color:var(--ink-soft); font-size:0.88rem; margin-top:6px;">輸入密碼以管理檔期</p>
+        <input id="admPwInput" type="password" inputmode="numeric" placeholder="密碼" autocomplete="off">
+        <button id="admPwSubmit" type="button">登入</button>
+        <p id="adminError">密碼錯誤，請再試一次</p>
+      </div>
+
+      <div class="admin-panel-inner" id="adminPanel" style="display:none;">
+        <div class="admin-save-row">
+          <h2 style="font-size:1.15rem;">檔期管理</h2>
+          <button class="btn btn-primary" id="admSaveBtn" type="button">儲存變更</button>
+        </div>
+        <div id="admSaveMsg"></div>
+
+        <div class="cal-tabs" role="tablist">
+          <button class="cal-tab" role="tab" aria-selected="true" data-device="s23" id="admTabS23">Samsung S23 Ultra</button>
+          <button class="cal-tab" role="tab" aria-selected="false" data-device="vivo" id="admTabVivo">vivo X300 Ultra</button>
+        </div>
+
+        <div class="cal-card">
+          <div class="cal-nav">
+            <button id="admPrevMonth" aria-label="上個月" type="button">‹</button>
+            <h3 id="admMonthLabel"></h3>
+            <button id="admNextMonth" aria-label="下個月" type="button">›</button>
+          </div>
+          <div class="cal-grid" id="admDow"></div>
+          <div class="cal-grid" id="admDays"></div>
+          <div class="cal-legend">
+            <span><span class="swatch a"></span>可租借（點一下改成已預訂）</span>
+            <span><span class="swatch b"></span>已預訂（點一下改回可租借）</span>
+          </div>
+        </div>
+        <p class="cal-note">點日期只會先在畫面上切換顏色，記得改完要按上面「儲存變更」才會真的更新到上方的檔期確認。</p>
       </div>
     </div>
   </section>
@@ -680,6 +750,147 @@
 
   renderCalendar();
   loadBookedDates();
+
+  // ---- booking form: submit via AJAX so we can show an inline success message ----
+  const bookingForm = document.getElementById('bookingForm');
+  const formSuccess = document.getElementById('formSuccess');
+  bookingForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const formData = new FormData(bookingForm);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    }).then(() => {
+      bookingForm.style.display = 'none';
+      formSuccess.style.display = 'block';
+      formSuccess.scrollIntoView({behavior:'smooth', block:'start'});
+    }).catch(() => {
+      alert('送出失敗，請檢查網路連線後再試一次，或直接透過 LINE 聯繫我們。');
+    });
+  });
+
+  // ---- embedded admin panel ----
+  const ADMIN_PASSWORD = '1010';
+  let admBookedDates = { s23: [], vivo: [] };
+  let admCurrentDevice = 's23';
+  let admViewDate = new Date();
+
+  document.getElementById('adminToggleBtn').addEventListener('click', () => {
+    document.getElementById('adminToggleWrap').style.display = 'none';
+    document.getElementById('adminGate').style.display = 'block';
+  });
+
+  document.getElementById('admPwSubmit').addEventListener('click', admTryLogin);
+  document.getElementById('admPwInput').addEventListener('keydown', e => { if(e.key === 'Enter') admTryLogin(); });
+
+  function admTryLogin(){
+    const val = document.getElementById('admPwInput').value;
+    if(val === ADMIN_PASSWORD){
+      document.getElementById('adminGate').style.display = 'none';
+      document.getElementById('adminPanel').style.display = 'block';
+      admLoadBookings();
+    } else {
+      document.getElementById('adminError').style.display = 'block';
+    }
+  }
+
+  async function admLoadBookings(){
+    try {
+      const res = await fetch('/.netlify/functions/get-bookings');
+      if(res.ok){
+        const data = await res.json();
+        if(data && data.s23 && data.vivo) admBookedDates = JSON.parse(JSON.stringify(data));
+      }
+    } catch(err){ /* 讀取失敗就從空白開始標記 */ }
+    admRenderCalendar();
+  }
+
+  const admDow = document.getElementById('admDow');
+  const admDays = document.getElementById('admDays');
+  const admMonthLabel = document.getElementById('admMonthLabel');
+
+  dowNames.forEach(d => {
+    const el = document.createElement('div');
+    el.className = 'cal-dow';
+    el.textContent = d;
+    admDow.appendChild(el);
+  });
+
+  function admRenderCalendar(){
+    const y = admViewDate.getFullYear();
+    const m = admViewDate.getMonth();
+    admMonthLabel.textContent = `${y} 年 ${m + 1} 月`;
+    admDays.innerHTML = '';
+
+    const firstDow = new Date(y, m, 1).getDay();
+    const daysInMonth = new Date(y, m + 1, 0).getDate();
+
+    for(let i = 0; i < firstDow; i++){
+      const empty = document.createElement('div');
+      empty.className = 'day empty';
+      admDays.appendChild(empty);
+    }
+
+    for(let d = 1; d <= daysInMonth; d++){
+      const dateStr = fmtDate(y, m, d);
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = d;
+      const isBooked = (admBookedDates[admCurrentDevice] || []).includes(dateStr);
+      btn.className = isBooked ? 'day booked' : 'day available';
+      btn.addEventListener('click', () => admToggleDate(dateStr));
+      admDays.appendChild(btn);
+    }
+  }
+
+  function admToggleDate(dateStr){
+    const list = admBookedDates[admCurrentDevice] || (admBookedDates[admCurrentDevice] = []);
+    const idx = list.indexOf(dateStr);
+    if(idx === -1) list.push(dateStr); else list.splice(idx, 1);
+    admRenderCalendar();
+  }
+
+  [document.getElementById('admTabS23'), document.getElementById('admTabVivo')].forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.getElementById('admTabS23').setAttribute('aria-selected', tab.id === 'admTabS23' ? 'true' : 'false');
+      document.getElementById('admTabVivo').setAttribute('aria-selected', tab.id === 'admTabVivo' ? 'true' : 'false');
+      admCurrentDevice = tab.dataset.device;
+      admRenderCalendar();
+    });
+  });
+
+  document.getElementById('admPrevMonth').addEventListener('click', () => { admViewDate.setMonth(admViewDate.getMonth() - 1); admRenderCalendar(); });
+  document.getElementById('admNextMonth').addEventListener('click', () => { admViewDate.setMonth(admViewDate.getMonth() + 1); admRenderCalendar(); });
+
+  document.getElementById('admSaveBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('admSaveBtn');
+    const msg = document.getElementById('admSaveMsg');
+    btn.disabled = true;
+    msg.classList.remove('ok', 'no');
+    msg.style.display = 'none';
+    try {
+      const res = await fetch('/.netlify/functions/update-bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: ADMIN_PASSWORD, bookedDates: admBookedDates })
+      });
+      if(res.ok){
+        msg.textContent = '已儲存，上方的檔期確認會顯示最新資料。';
+        msg.classList.add('ok');
+        bookedDates = admBookedDates;
+        renderCalendar();
+      } else {
+        msg.textContent = '儲存失敗，請確認密碼或稍後再試一次。';
+        msg.classList.add('no');
+      }
+    } catch(err){
+      msg.textContent = '儲存失敗，請檢查網路連線。';
+      msg.classList.add('no');
+    }
+    msg.style.display = 'block';
+    btn.disabled = false;
+  });
 </script>
 
 </body>
