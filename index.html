@@ -4,74 +4,92 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>不是P人但還沒想好名字 — 手機租借</title>
-<meta name="description" content="Samsung Galaxy S23 Ultra、vivo X300 Ultra 手機租借，先查空檔，再預約，面交交機。">
+<meta name="description" content="vivo X300 Pro、vivo X300 Ultra 手機租借。先看哪天有空，再填表預約，最後 LINE 見，面交交機。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#F2F3F1;
-    --surface:#FFFFFF;
-    --surface-alt:#E7E9E5;
-    --ink:#20242A;
-    --ink-soft:#5B6169;
-    --accent:#3E7686;        /* 降低亮度的藍 */
-    --accent-deep:#2A5866;
-    --accent-tint:#DCE9EC;
-    --booked:#3A3D42;
-    --line:rgba(32,36,42,0.14);
-    --radius:10px;
+    --paper:#F3F6F6;
+    --card:#FFFFFF;
+    --band:#E6EEF0;
+    --ink:#1B2B32;
+    --ink-soft:#52646C;
+    --line:rgba(27,43,50,0.12);
+    --blue:#3E7686;
+    --blue-deep:#244E5B;
+    --blue-night:#17343E;
+    --tint:#DDEBEF;
+    --tint-2:#C3DBE2;
+    --butter:#F4DD9B;
+    --butter-ink:#5A4410;
+    --booked:#33454D;
+    --rose:#F3DEDC;
+    --rose-ink:#8A3B3B;
+    --r-lg:22px;
+    --r-md:14px;
+    --r-sm:10px;
+    --shadow:0 1px 0 rgba(27,43,50,0.04), 0 14px 32px -22px rgba(27,43,50,0.35);
+    --font-display:'Huninn','M PLUS Rounded 1c','Noto Sans TC',sans-serif;
+    --font-num:'M PLUS Rounded 1c','Noto Sans TC',sans-serif;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
-    margin:0; background:var(--bg); color:var(--ink);
-    font-family:'Noto Sans TC',sans-serif; line-height:1.65;
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Noto Sans TC',sans-serif; line-height:1.7;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3{
-    font-family:'M PLUS Rounded 1c','Noto Sans TC',sans-serif;
-    font-weight:700; margin:0; letter-spacing:0.01em;
-  }
+  h1,h2,h3{font-family:var(--font-display); font-weight:400; margin:0; letter-spacing:0.02em; line-height:1.3;}
+  p{margin:0;}
   a{color:inherit;}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 22px;}
+  button{font-family:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 22px;}
+  section{padding:72px 0; scroll-margin-top:60px;}
+  section.band{background:var(--band);}
   a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible{
-    outline:2px solid var(--accent); outline-offset:3px;
+    outline:2px solid var(--blue); outline-offset:3px;
   }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{transition:none !important;} }
 
-  /* ---- Nav ---- */
+  /* ===== Header ===== */
   header{
     position:sticky; top:0; z-index:40;
-    background:rgba(242,243,241,0.92); backdrop-filter:blur(6px);
+    background:rgba(243,246,246,0.9); backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
-  nav.wrap{display:flex; align-items:center; justify-content:space-between; padding:14px 22px;}
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; padding-top:12px; padding-bottom:12px;}
   .logo{
-    font-family:'M PLUS Rounded 1c',sans-serif; font-weight:800; font-size:1.05rem;
-    text-decoration:none; display:flex; align-items:center; gap:8px; max-width:60%;
+    font-family:var(--font-display); font-size:1.02rem; text-decoration:none;
+    display:flex; align-items:center; gap:10px; max-width:62%;
   }
-  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex-shrink:0;}
-  .nav-links{display:flex; gap:22px; list-style:none; margin:0; padding:0;}
-  .nav-links a{text-decoration:none; font-size:0.92rem; color:var(--ink-soft);}
+  .logo-mark{
+    width:26px; height:26px; border-radius:50%; background:var(--blue-night); flex-shrink:0; position:relative;
+  }
+  .logo-mark::before{content:''; position:absolute; inset:6px; border-radius:50%; background:var(--blue); }
+  .logo-mark::after{content:''; position:absolute; width:5px; height:5px; border-radius:50%; background:var(--butter); top:7px; left:8px;}
+  .nav-links{display:flex; align-items:center; gap:22px; list-style:none; margin:0; padding:0;}
+  .nav-links a{text-decoration:none; font-size:0.9rem; color:var(--ink-soft); transition:color .15s;}
   .nav-links a:hover{color:var(--ink);}
   .nav-cta{
-    background:var(--accent); color:#fff; padding:9px 18px; border-radius:20px;
-    text-decoration:none; font-size:0.86rem; font-weight:500;
+    background:var(--blue-night); color:#fff !important; padding:9px 18px; border-radius:999px; font-weight:500;
   }
+  .nav-cta:hover{background:var(--blue);}
   .nav-toggle{display:none;}
-  @media (max-width:820px){
+  @media (max-width:860px){
     .nav-links{
-      position:absolute; top:100%; left:0; right:0; background:var(--surface);
-      flex-direction:column; gap:0; border-bottom:1px solid var(--line);
+      position:absolute; top:100%; left:0; right:0; background:var(--card);
+      flex-direction:column; align-items:stretch; gap:0; border-bottom:1px solid var(--line);
       max-height:0; overflow:hidden; transition:max-height .25s ease;
     }
-    .nav-links.open{max-height:320px;}
+    .nav-links.open{max-height:380px;}
     .nav-links li{border-top:1px solid var(--line);}
-    .nav-links a{display:block; padding:16px 24px;}
-    .nav-cta{display:none;}
+    .nav-links a{display:block; padding:15px 24px;}
+    .nav-links .nav-cta{border-radius:0; background:none; color:var(--blue-deep) !important; font-weight:700;}
     .nav-toggle{
       display:inline-flex; align-items:center; justify-content:center;
-      width:36px; height:36px; border:1px solid var(--line); border-radius:8px; background:none; cursor:pointer; flex-shrink:0;
+      width:38px; height:38px; border:1px solid var(--line); border-radius:10px; background:none; cursor:pointer; flex-shrink:0;
     }
     .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
       content:''; display:block; width:16px; height:2px; background:var(--ink); position:relative;
@@ -80,205 +98,369 @@
     .nav-toggle span::after{position:absolute; top:5px;}
   }
 
-  /* ---- Hero ---- */
-  .hero{padding:56px 0 48px;}
-  .hero h1{font-size:clamp(1.6rem,4vw,2.3rem); max-width:16ch;}
-  .hero p{margin-top:16px; color:var(--ink-soft); max-width:44ch; font-size:1rem;}
-  .hero-actions{margin-top:26px; display:flex; gap:12px; flex-wrap:wrap;}
+  /* ===== Buttons ===== */
   .btn{
-    display:inline-block; padding:12px 24px; border-radius:24px; text-decoration:none;
-    font-size:0.94rem; font-weight:500; cursor:pointer; border:1px solid transparent;
-    font-family:'M PLUS Rounded 1c',sans-serif;
+    display:inline-block; padding:13px 26px; border-radius:999px; text-decoration:none;
+    font-size:0.95rem; font-weight:700; cursor:pointer; border:1.5px solid transparent;
+    font-family:var(--font-num); transition:background .15s, color .15s, transform .15s;
   }
-  .btn-primary{background:var(--accent); color:#fff;}
-  .btn-primary:hover{background:var(--accent-deep);}
-  .btn-ghost{border-color:var(--ink); color:var(--ink); background:none;}
-  .btn-ghost:hover{background:var(--surface-alt);}
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{background:var(--blue-night); color:#fff;}
+  .btn-primary:hover{background:var(--blue);}
+  .btn-ghost{border-color:var(--blue-night); color:var(--blue-night); background:none;}
+  .btn-ghost:hover{background:var(--tint);}
+  .btn-butter{background:var(--butter); color:var(--butter-ink);}
+  .btn-butter:hover{background:#EFD27F;}
 
-  /* ---- section shell ---- */
-  section{padding:64px 0;}
-  section.alt{background:var(--surface-alt);}
-  .section-head{max-width:52ch; margin-bottom:36px;}
-  .section-head h2{font-size:clamp(1.35rem,2.4vw,1.75rem);}
-  .section-head p{color:var(--ink-soft); margin-top:10px; font-size:0.96rem;}
+  /* ===== Hero ===== */
+  .hero{padding:52px 0 64px; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.08fr 0.92fr; gap:36px; align-items:center;}
+  .hero h1{font-size:clamp(2rem,4.6vw,3.1rem); text-wrap:balance;}
+  .hero .lede{margin-top:18px; color:var(--ink-soft); font-size:1.02rem; max-width:40ch;}
+  .hero-actions{margin-top:26px; display:flex; gap:12px; flex-wrap:wrap;}
 
-  /* ---- device pricing cards ---- */
-  .device-card{
-    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
-    padding:28px; margin-bottom:22px;
+  .week{
+    margin-top:34px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg);
+    padding:18px 18px 16px; box-shadow:var(--shadow); max-width:520px;
   }
-  .device-card h3{font-size:1.25rem;}
-  .device-card .model-tag{
-    display:inline-block; margin-top:8px; font-size:0.78rem; color:var(--accent-deep);
-    background:var(--accent-tint); border-radius:20px; padding:3px 12px;
+  .week-title{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:12px;}
+  .week-title b{font-family:var(--font-display); font-weight:400; font-size:1.02rem;}
+  .week-title span{font-size:0.78rem; color:var(--ink-soft);}
+  .week-row{display:grid; grid-template-columns:76px repeat(7,1fr); gap:5px; align-items:stretch;}
+  .week-row + .week-row{margin-top:6px;}
+  .week-label{font-size:0.78rem; color:var(--ink-soft); display:flex; align-items:center; line-height:1.2;}
+  .wd{
+    border:none; border-radius:10px; padding:5px 0 6px; cursor:pointer; text-align:center;
+    display:flex; flex-direction:column; gap:1px; font-family:var(--font-num); transition:background .15s, color .15s;
   }
-  table.ledger{width:100%; border-collapse:collapse; font-size:0.94rem; margin-top:18px;}
-  table.ledger th, table.ledger td{text-align:left; padding:10px 12px; border-top:1px solid var(--line);}
-  table.ledger thead th{color:var(--ink-soft); font-weight:500; font-size:0.82rem; border-top:none;}
-  table.ledger td:last-child, table.ledger th:last-child{text-align:right;}
-  table.ledger td:first-child{font-weight:500;}
-  .table-scroll{overflow-x:auto;}
-  .addon-list{list-style:none; margin:16px 0 0; padding:0; font-size:0.92rem;}
-  .addon-list li{display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid var(--line);}
-  .addon-list li span:last-child{font-weight:600;}
-  .warn-box{
-    margin-top:18px; font-size:0.86rem; color:var(--ink-soft);
-    background:var(--accent-tint); border-radius:8px; padding:12px 14px;
+  .wd-dow{font-size:0.62rem; opacity:0.7;}
+  .wd-num{font-size:0.9rem; font-weight:700; line-height:1.1;}
+  .wd.available{background:var(--tint); color:var(--blue-deep);}
+  .wd.available:hover{background:var(--blue); color:#fff;}
+  .wd.booked{background:var(--booked); color:#9FB2BA; cursor:not-allowed;}
+  .wd.booked .wd-num{text-decoration:line-through;}
+  .wd.today{box-shadow:0 0 0 2px var(--butter);}
+  .week-foot{margin-top:12px; font-size:0.76rem; color:var(--ink-soft);}
+
+  .hero-art{position:relative; display:flex; justify-content:center; align-items:center; min-height:420px;}
+  .hero-art .disc{
+    position:absolute; width:88%; aspect-ratio:1; border-radius:50%; background:var(--tint);
+    top:50%; left:50%; transform:translate(-50%,-50%);
+  }
+  .hero-art .disc::after{
+    content:''; position:absolute; inset:14%; border-radius:50%; border:1.5px dashed var(--tint-2);
+  }
+  .hero-art svg{position:relative; width:min(290px,74%); height:auto; filter:drop-shadow(0 26px 24px rgba(23,52,62,0.28));}
+  .sticker{
+    position:absolute; background:var(--card); border:1px solid var(--line); border-radius:999px;
+    padding:8px 14px; font-size:0.8rem; font-weight:500; box-shadow:var(--shadow); white-space:nowrap;
+  }
+  .sticker b{font-family:var(--font-num); color:var(--blue-deep);}
+  .sticker.s1{top:12%; left:0; transform:rotate(-5deg);}
+  .sticker.s2{bottom:16%; right:0; background:var(--butter); border-color:transparent; color:var(--butter-ink); transform:rotate(4deg);}
+  .sticker.s3{bottom:4%; left:6%; transform:rotate(-3deg);}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr; gap:10px;}
+    .hero-art{min-height:300px; order:-1;}
+    .hero-art svg{width:min(200px,52%);}
+    .sticker{font-size:0.72rem; padding:6px 11px;}
+    .sticker.s3{display:none;}
+    .hero h1{max-width:none;}
+  }
+  @media (max-width:520px){
+    .week-row{grid-template-columns:58px repeat(7,1fr); gap:4px;}
+    .week-label{font-size:0.7rem;}
   }
 
-  .deposit-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px;}
-  .deposit-item{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px;}
-  .deposit-item b{font-family:'M PLUS Rounded 1c',sans-serif; display:block; font-size:1.15rem; color:var(--accent-deep);}
-  .deposit-item span{font-size:0.85rem; color:var(--ink-soft);}
-  @media (max-width:640px){ .deposit-grid{grid-template-columns:1fr;} }
+  /* ===== Section heads ===== */
+  .section-head{max-width:54ch; margin-bottom:32px;}
+  .section-head h2{font-size:clamp(1.55rem,3vw,2.1rem);}
+  .section-head p{color:var(--ink-soft); margin-top:10px; font-size:0.98rem;}
 
-  /* ---- Calendar ---- */
+  /* ===== Tabs ===== */
+  .info-tabs{
+    display:inline-flex; gap:4px; background:var(--band); border-radius:999px; padding:5px;
+    margin-bottom:30px; flex-wrap:wrap; max-width:100%;
+  }
+  .info-tab{
+    padding:11px 22px; border:none; border-radius:999px; background:none; cursor:pointer;
+    font-size:0.92rem; font-family:var(--font-display); color:var(--ink-soft); transition:background .15s, color .15s;
+  }
+  .info-tab:hover{color:var(--ink);}
+  .info-tab[aria-selected="true"]{background:var(--card); color:var(--blue-deep); box-shadow:0 1px 4px rgba(27,43,50,0.14);}
+  .info-panel[hidden]{display:none;}
+  @media (max-width:560px){
+    .info-tabs{display:flex; width:100%;}
+    .info-tab{flex:1; padding:11px 6px; font-size:0.84rem;}
+  }
+
+  /* ===== Price cards ===== */
+  .price-top{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .phone-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:28px;
+    box-shadow:var(--shadow); display:flex; flex-direction:column;
+  }
+  .phone-card.hot{background:var(--blue-night); border-color:transparent; color:#fff;}
+  .card-tag{
+    align-self:flex-start; font-size:0.76rem; padding:4px 12px; border-radius:999px;
+    background:var(--tint); color:var(--blue-deep); font-weight:500;
+  }
+  .hot .card-tag{background:var(--butter); color:var(--butter-ink);}
+  .phone-card h3{font-size:1.4rem; margin-top:14px;}
+  .phone-card .sub{font-size:0.84rem; color:var(--ink-soft); margin-top:2px;}
+  .hot .sub{color:#A9C2CB;}
+  .big-price{margin-top:18px; display:flex; align-items:baseline; gap:4px; font-family:var(--font-num);}
+  .big-price .cur{font-size:1rem; font-weight:700;}
+  .big-price b{font-size:3.2rem; font-weight:800; line-height:1; letter-spacing:-0.02em;}
+  .big-price .per{font-size:0.95rem; color:var(--ink-soft); margin-left:2px;}
+  .hot .big-price .per{color:#A9C2CB;}
+  .perks{list-style:none; margin:20px 0 0; padding:18px 0 0; border-top:1px dashed var(--line); display:flex; gap:8px; flex-wrap:wrap;}
+  .hot .perks{border-top-color:rgba(255,255,255,0.22);}
+  .perks li{
+    font-size:0.8rem; padding:5px 12px; border-radius:999px; background:var(--paper); color:var(--ink-soft);
+  }
+  .hot .perks li{background:rgba(255,255,255,0.12); color:#E7F1F4;}
+  .perks li b{font-family:var(--font-num); color:var(--blue-deep);}
+  .hot .perks li b{color:var(--butter);}
+
+  .acc-title{margin:36px 0 14px; font-size:1.15rem;}
+  .acc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .acc-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:20px 20px 18px;
+  }
+  .acc-card h3{font-size:1.05rem;}
+  .acc-card .row{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-top:12px; font-size:0.84rem; color:var(--ink-soft);}
+  .acc-card .row + .row{margin-top:6px;}
+  .acc-card .row b{font-family:var(--font-num); font-size:1.15rem; color:var(--ink);}
+  .acc-card .row b small{font-size:0.74rem; font-weight:500; color:var(--ink-soft);}
+  .acc-card .note{margin-top:12px; font-size:0.78rem; color:var(--ink-soft); padding-top:10px; border-top:1px dashed var(--line);}
+  .tip{
+    margin-top:22px; background:var(--butter); color:var(--butter-ink); border-radius:var(--r-md);
+    padding:14px 18px; font-size:0.9rem; display:flex; gap:12px; align-items:flex-start;
+  }
+  .tip .ico{font-size:1.2rem; line-height:1.4;}
+  @media (max-width:760px){
+    .price-top{grid-template-columns:1fr;}
+    .acc-grid{grid-template-columns:1fr;}
+  }
+
+  /* ===== Calculator ===== */
+  .calc{display:grid; grid-template-columns:1.15fr 0.85fr; gap:22px; margin-top:44px; align-items:start;}
+  .calc-main{background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:28px; box-shadow:var(--shadow);}
+  .calc-main h3{font-size:1.3rem;}
+  .calc-main > p{color:var(--ink-soft); font-size:0.9rem; margin-top:8px;}
+  .calc-label{font-family:var(--font-display); font-size:1rem; margin:26px 0 12px;}
+  .calc-items{display:flex; flex-direction:column; gap:10px;}
+  .calc-item{
+    display:flex; align-items:center; gap:14px; border:1.5px solid var(--line); border-radius:var(--r-md);
+    padding:13px 16px; cursor:pointer; transition:border-color .15s, background .15s;
+  }
+  .calc-item:hover{border-color:var(--tint-2);}
+  .calc-item:has(input:checked){border-color:var(--blue); background:var(--tint);}
+  .calc-item input{width:20px; height:20px; flex-shrink:0; accent-color:var(--blue-deep);}
+  .calc-item-main{flex:1; display:flex; flex-direction:column; gap:1px;}
+  .calc-item-name{font-size:0.95rem; font-weight:500;}
+  .calc-item-sub{font-size:0.76rem; color:var(--ink-soft);}
+  .calc-item-price{font-family:var(--font-num); font-weight:700; font-size:0.92rem; white-space:nowrap;}
+  .calc-days{display:flex; align-items:center; gap:12px;}
+  .calc-days button{
+    width:44px; height:44px; border-radius:50%; border:1.5px solid var(--line); background:var(--card);
+    cursor:pointer; font-size:1.2rem; color:var(--blue-deep); transition:background .15s;
+  }
+  .calc-days button:hover{background:var(--tint);}
+  .calc-days input{
+    width:84px; text-align:center; padding:10px; border:1.5px solid var(--line); border-radius:var(--r-sm);
+    font-size:1.3rem; font-family:var(--font-num); font-weight:700;
+  }
+  .calc-days span{color:var(--ink-soft); font-size:0.92rem;}
+
+  .calc-out{
+    background:var(--blue-night); color:#fff; border-radius:var(--r-lg); padding:28px;
+    position:sticky; top:84px; box-shadow:var(--shadow);
+  }
+  .calc-out h3{font-size:1.05rem; color:#BFD6DD;}
+  .calc-total-num{margin-top:8px; font-family:var(--font-num); font-weight:800; font-size:3rem; line-height:1.05; letter-spacing:-0.02em;}
+  .calc-total-num small{font-size:1rem; font-weight:700; margin-right:4px; color:var(--butter);}
+  .calc-rows{margin-top:20px; padding-top:16px; border-top:1px dashed rgba(255,255,255,0.25); display:flex; flex-direction:column; gap:9px;}
+  .calc-row{display:flex; justify-content:space-between; gap:12px; font-size:0.86rem; color:#BFD6DD;}
+  .calc-row span:last-child{color:#fff; font-weight:500; text-align:right;}
+  .calc-out .btn{width:100%; text-align:center; margin-top:24px; border:none;}
+  .calc-note{font-size:0.76rem; color:#9FB9C1; margin-top:12px;}
+  @media (max-width:860px){
+    .calc{grid-template-columns:1fr;}
+    .calc-out{position:static;}
+  }
+  @media (max-width:520px){ .calc-main, .calc-out{padding:22px 18px;} }
+
+  /* ===== Notice ===== */
+  .notice-lede{color:var(--ink-soft); font-size:0.98rem; max-width:58ch; margin-bottom:26px;}
+  .facts{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:34px;}
+  .fact{background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:18px 20px; box-shadow:var(--shadow);}
+  .fact b{display:block; font-family:var(--font-num); font-size:1.6rem; font-weight:800; color:var(--blue-deep); line-height:1.15;}
+  .fact b small{font-size:0.8rem; font-weight:500; color:var(--ink-soft);}
+  .fact span{display:block; margin-top:6px; font-size:0.84rem; color:var(--ink-soft);}
+  @media (max-width:700px){ .facts{grid-template-columns:1fr;} }
+
+  .notice-h{font-size:1.25rem; margin:0 0 16px;}
+  .timeline{background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:26px 26px 6px; margin-bottom:36px;}
+  .rule-step{display:flex; gap:16px; padding-bottom:22px; position:relative;}
+  .rule-step:not(:last-child)::before{
+    content:''; position:absolute; left:15px; top:34px; bottom:2px; width:2px; background:var(--tint-2); border-radius:2px;
+  }
+  .rule-num{
+    flex-shrink:0; width:32px; height:32px; border-radius:50%; background:var(--blue-night);
+    color:#fff; font-family:var(--font-num); font-weight:700; font-size:0.9rem;
+    display:flex; align-items:center; justify-content:center; z-index:1;
+  }
+  .rule-step:last-child .rule-num{background:var(--butter); color:var(--butter-ink);}
+  .rule-step b{font-family:var(--font-display); font-weight:400; font-size:1.02rem;}
+  .rule-step p{margin-top:3px; font-size:0.9rem; color:var(--ink-soft);}
+
+  .rule-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .rule-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:24px 24px 22px;}
+  .rule-card.wide{grid-column:1 / -1;}
+  .rule-card h3{font-size:1.1rem; margin-bottom:14px;}
+  .rule-card ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .rule-card li{position:relative; padding-left:20px; font-size:0.9rem; color:var(--ink-soft); line-height:1.65;}
+  .rule-card li::before{content:''; position:absolute; left:2px; top:0.62em; width:7px; height:7px; border-radius:50%; background:var(--tint-2);}
+  .rule-card li b{color:var(--ink); font-weight:500;}
+  .rule-card.wide ul{display:grid; grid-template-columns:1fr 1fr; gap:10px 28px;}
+  .spots{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;}
+  .spots span{background:var(--tint); color:var(--blue-deep); border-radius:999px; padding:6px 14px; font-size:0.86rem; font-weight:500;}
+  .fine{margin-top:22px; background:var(--tint); color:var(--blue-deep); border-radius:var(--r-md); padding:14px 18px; font-size:0.86rem;}
+  @media (max-width:760px){
+    .rule-grid{grid-template-columns:1fr;}
+    .rule-card.wide ul{grid-template-columns:1fr;}
+    .timeline{padding:22px 18px 4px;}
+  }
+
+  /* ===== FAQ ===== */
+  .faq-list{display:flex; flex-direction:column; gap:12px; max-width:820px;}
+  details{background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); transition:border-color .15s;}
+  details[open]{border-color:var(--tint-2);}
+  summary{
+    padding:18px 22px; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px;
+    font-family:var(--font-display); font-size:1rem;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{
+    content:'+'; font-family:var(--font-num); font-size:1.2rem; color:var(--blue-deep); flex-shrink:0;
+    width:28px; height:28px; border-radius:50%; background:var(--tint); display:flex; align-items:center; justify-content:center;
+  }
+  details[open] summary::after{content:'–';}
+  details .body{padding:0 22px 20px; color:var(--ink-soft); font-size:0.92rem;}
+
+  /* ===== Calendar ===== */
   .cal-tabs{display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;}
   .cal-tab{
-    padding:9px 18px; border-radius:20px; border:1px solid var(--line); background:var(--surface);
-    font-size:0.9rem; cursor:pointer; font-family:'M PLUS Rounded 1c',sans-serif;
+    padding:10px 20px; border-radius:999px; border:1.5px solid var(--line); background:var(--card);
+    font-size:0.92rem; cursor:pointer; font-family:var(--font-display); transition:background .15s, color .15s;
   }
-  .cal-tab[aria-selected="true"]{background:var(--accent); color:#fff; border-color:var(--accent);}
-  .cal-card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:24px;}
-  .cal-nav{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;}
+  .cal-tab:hover{border-color:var(--blue);}
+  .cal-tab[aria-selected="true"]{background:var(--blue-night); color:#fff; border-color:var(--blue-night);}
+  .cal-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:26px; box-shadow:var(--shadow); max-width:720px;}
+  .cal-nav{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;}
   .cal-nav button{
-    width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:var(--surface);
-    cursor:pointer; font-size:1rem;
+    width:38px; height:38px; border-radius:50%; border:1.5px solid var(--line); background:var(--card); cursor:pointer; font-size:1.1rem;
   }
-  .cal-nav h3{font-size:1.05rem;}
+  .cal-nav button:hover{background:var(--tint);}
+  .cal-nav h3{font-size:1.15rem;}
   .cal-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:6px;}
   .cal-dow{text-align:center; font-size:0.78rem; color:var(--ink-soft); padding-bottom:6px;}
   .day{
-    aspect-ratio:1; border-radius:8px; border:none; font-size:0.88rem; cursor:pointer;
-    font-family:'Noto Sans TC',sans-serif; display:flex; align-items:center; justify-content:center;
+    aspect-ratio:1; border-radius:12px; border:none; font-size:0.92rem; cursor:pointer;
+    font-family:var(--font-num); display:flex; align-items:center; justify-content:center; transition:background .15s, color .15s, transform .15s;
   }
   .day.empty{visibility:hidden;}
-  .day.available{background:var(--accent-tint); color:var(--accent-deep); font-weight:600;}
-  .day.available:hover{background:var(--accent); color:#fff;}
-  .day.booked{background:var(--booked); color:#B9BCC1; text-decoration:line-through; cursor:not-allowed;}
-  .day.past{background:none; color:var(--line); cursor:not-allowed;}
-  .cal-legend{display:flex; gap:18px; margin-top:16px; font-size:0.82rem; color:var(--ink-soft); flex-wrap:wrap;}
-  .cal-legend span{display:inline-flex; align-items:center; gap:6px;}
-  .swatch{width:12px;height:12px;border-radius:3px;display:inline-block;}
-  .swatch.a{background:var(--accent-tint);}
+  .day.available{background:var(--tint); color:var(--blue-deep); font-weight:700;}
+  .day.available:hover{background:var(--blue); color:#fff; transform:scale(1.05);}
+  .day.booked{background:var(--booked); color:#9FB2BA; text-decoration:line-through; cursor:not-allowed;}
+  .day.past{background:none; color:rgba(27,43,50,0.22); cursor:not-allowed;}
+  .day.today{box-shadow:0 0 0 2px var(--butter);}
+  .cal-legend{display:flex; gap:18px; margin-top:18px; font-size:0.82rem; color:var(--ink-soft); flex-wrap:wrap;}
+  .cal-legend span{display:inline-flex; align-items:center; gap:7px;}
+  .swatch{width:14px; height:14px; border-radius:5px; display:inline-block;}
+  .swatch.a{background:var(--tint);}
   .swatch.b{background:var(--booked);}
-  #calStatus{
-    margin-top:16px; padding:12px 14px; border-radius:8px; font-size:0.9rem;
-    background:var(--surface-alt); display:none;
-  }
+  .swatch.t{background:var(--card); box-shadow:0 0 0 2px var(--butter);}
+  #calStatus{margin-top:18px; padding:13px 16px; border-radius:var(--r-sm); font-size:0.92rem; background:var(--band); display:none;}
   #calStatus.show{display:block;}
-  #calStatus.ok{background:var(--accent-tint); color:var(--accent-deep);}
-  #calStatus.no{background:#EDE0E0; color:#8A3B3B;}
-  .cal-note{margin-top:18px; font-size:0.82rem; color:var(--ink-soft);}
+  #calStatus.ok{background:var(--tint); color:var(--blue-deep);}
+  #calStatus.no{background:var(--rose); color:var(--rose-ink);}
+  .cal-note{margin-top:16px; font-size:0.84rem; color:var(--ink-soft); max-width:60ch;}
+  @media (max-width:520px){ .cal-card{padding:18px 14px;} .cal-grid{gap:4px;} }
 
-  /* ---- steps ---- */
-  .steps{counter-reset:step; display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line);}
-  .step{display:flex; gap:18px; padding:18px 0; border-bottom:1px solid var(--line);}
-  .step .num{
-    counter-increment:step; font-family:'M PLUS Rounded 1c',sans-serif; color:var(--accent-deep);
-    font-weight:700; flex-shrink:0; width:26px;
-  }
-  .step .num::before{content: counter(step);}
-  .step p{margin:0; font-size:0.95rem;}
-
-  /* ---- meeting points ---- */
-  .points{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;}
-  .point{
-    background:var(--surface); border:1px solid var(--line); border-radius:20px;
-    padding:8px 16px; font-size:0.88rem;
-  }
-
-  /* ---- FAQ / rules accordion ---- */
-  .faq-list{border-top:1px solid var(--line);}
-  details{border-bottom:1px solid var(--line);}
-  summary{
-    padding:18px 4px; cursor:pointer; font-weight:600; list-style:none;
-    display:flex; justify-content:space-between; align-items:center; gap:16px;
-    font-family:'M PLUS Rounded 1c',sans-serif; font-size:0.98rem;
-  }
-  summary::-webkit-details-marker{display:none;}
-  summary::after{content:'+'; font-size:1.2rem; color:var(--ink-soft); flex-shrink:0;}
-  details[open] summary::after{content:'–';}
-  details .body{margin:0 0 20px; color:var(--ink-soft); font-size:0.9rem;}
-  details .body ul{margin:6px 0; padding-left:1.1em;}
-  details .body li{margin-bottom:6px;}
-  details .body p{margin:6px 0;}
-
-  /* ---- form ---- */
-  .form-card{
-    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
-    padding:32px; max-width:720px;
-  }
-  .field-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
-  .field{margin-bottom:18px; display:flex; flex-direction:column; gap:7px;}
-  .field label{font-size:0.86rem; color:var(--ink-soft);}
+  /* ===== Booking form ===== */
+  .booking-wrap{display:grid; grid-template-columns:1.25fr 0.75fr; gap:26px; align-items:start;}
+  .form-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:32px; box-shadow:var(--shadow);}
+  fieldset{border:none; padding:0; margin:0 0 26px;}
+  legend{font-family:var(--font-display); font-size:1.08rem; padding:0; margin-bottom:14px;}
+  .field-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .field{margin-bottom:16px; display:flex; flex-direction:column; gap:7px;}
+  .field label, .field .lbl{font-size:0.86rem; color:var(--ink-soft);}
   .field input, .field select, .field textarea{
-    font-family:inherit; font-size:0.96rem; padding:10px 12px;
-    border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink);
+    font-family:inherit; font-size:0.96rem; padding:11px 13px; border:1.5px solid var(--line);
+    border-radius:var(--r-sm); background:#fff; color:var(--ink); transition:border-color .15s;
   }
-  .field textarea{resize:vertical; min-height:80px;}
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--blue); outline:none;}
+  .field textarea{resize:vertical; min-height:84px;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    display:inline-flex; align-items:center; gap:8px; padding:9px 14px; border:1.5px solid var(--line);
+    border-radius:999px; font-size:0.88rem; cursor:pointer; transition:border-color .15s, background .15s;
+  }
+  .chip input{accent-color:var(--blue-deep); width:16px; height:16px;}
+  .chip:has(input:checked){border-color:var(--blue); background:var(--tint);}
   .honeypot{position:absolute; left:-9999px;}
   .form-note{font-size:0.8rem; color:var(--ink-soft); margin-top:14px;}
-  @media (max-width:600px){ .field-grid{grid-template-columns:1fr;} .form-card{padding:22px 18px;} }
-
-  /* ---- LINE confirm ---- */
-  .line-card{
-    margin-top:44px; background:var(--accent); color:#fff; border-radius:var(--radius);
-    padding:32px; text-align:center;
+  .form-card .btn{width:100%; text-align:center; border:none; font-size:1rem; padding:15px;}
+  .side-card{background:var(--butter); color:var(--butter-ink); border-radius:var(--r-lg); padding:26px; position:sticky; top:84px;}
+  .side-card h3{font-size:1.15rem; margin-bottom:12px;}
+  .side-card ol{margin:0; padding-left:1.2em; font-size:0.9rem; display:flex; flex-direction:column; gap:8px;}
+  @media (max-width:900px){
+    .booking-wrap{grid-template-columns:1fr;}
+    .side-card{position:static; order:-1;}
   }
-  .line-card h3{font-size:1.2rem; color:#fff;}
-  .line-card p{color:rgba(255,255,255,0.85); margin-top:8px; font-size:0.92rem;}
+  @media (max-width:600px){ .field-grid{grid-template-columns:1fr;} .form-card{padding:24px 18px;} }
+
+  .line-card{margin-top:0; background:var(--blue-night); color:#fff; border-radius:var(--r-lg); padding:36px 30px; text-align:center;}
+  .line-card .big{font-size:2.4rem; margin-bottom:6px;}
+  .line-card h3{font-size:1.45rem; color:#fff;}
+  .line-card p{color:#BFD6DD; margin:10px auto 0; font-size:0.94rem; max-width:44ch;}
   .line-btn{
-    display:inline-block; margin-top:18px; background:#fff; color:var(--accent-deep);
-    padding:12px 28px; border-radius:24px; text-decoration:none; font-weight:700;
-    font-family:'M PLUS Rounded 1c',sans-serif;
+    display:inline-block; margin-top:22px; background:var(--butter); color:var(--butter-ink);
+    padding:13px 30px; border-radius:999px; text-decoration:none; font-weight:700; font-family:var(--font-num);
   }
 
-  footer{border-top:1px solid var(--line); padding:36px 0; font-size:0.82rem; color:var(--ink-soft);}
+  /* ===== Footer ===== */
+  footer{border-top:1px solid var(--line); padding:36px 0 30px; font-size:0.84rem; color:var(--ink-soft);}
+  .foot{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center;}
+  .foot .logo{font-size:0.98rem; color:var(--ink);}
 
-  /* ---- embedded admin panel ---- */
-  .admin-section{padding:40px 0 64px;}
+  /* ===== Admin ===== */
+  .admin-section{padding:36px 0 64px;}
   .admin-toggle-wrap{text-align:center;}
-  .admin-toggle-link{
-    background:none; border:none; color:var(--ink-soft); font-size:0.8rem;
-    text-decoration:underline; cursor:pointer; font-family:'Noto Sans TC',sans-serif; padding:6px;
-  }
-  .admin-gate{
-    max-width:320px; margin:0 auto; background:var(--surface); border:1px solid var(--line);
-    border-radius:var(--radius); padding:28px; text-align:center;
-  }
-  .admin-gate input{
-    width:100%; margin-top:16px; padding:10px 12px; border:1px solid var(--line); border-radius:8px;
-    font-size:1rem; text-align:center; letter-spacing:0.3em;
-  }
-  .admin-gate button{
-    margin-top:12px; width:100%; padding:11px; border:none; border-radius:24px;
-    background:var(--accent); color:#fff; font-family:'M PLUS Rounded 1c',sans-serif; font-weight:700; cursor:pointer;
-  }
-  #adminError{color:#8A3B3B; font-size:0.82rem; margin-top:8px; display:none;}
-  .admin-panel-inner{max-width:640px; margin:0 auto;}
+  .admin-toggle-link{background:none; border:none; color:var(--ink-soft); font-size:0.78rem; text-decoration:underline; cursor:pointer; padding:6px; opacity:0.75;}
+  .admin-gate{max-width:320px; margin:0 auto; background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:28px; text-align:center;}
+  .admin-gate input{width:100%; margin-top:16px; padding:10px 12px; border:1.5px solid var(--line); border-radius:var(--r-sm); font-size:1rem; text-align:center; letter-spacing:0.3em;}
+  .admin-gate button{margin-top:12px; width:100%; padding:11px; border:none; border-radius:999px; background:var(--blue-night); color:#fff; font-family:var(--font-num); font-weight:700; cursor:pointer;}
+  #adminError{color:var(--rose-ink); font-size:0.82rem; margin-top:8px; display:none;}
+  .admin-panel-inner{max-width:680px; margin:0 auto;}
   .admin-save-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;}
-  #admSaveMsg{font-size:0.85rem; margin-bottom:12px; padding:10px 14px; border-radius:8px; display:none;}
-  #admSaveMsg.ok{display:block; background:var(--accent-tint); color:var(--accent-deep);}
-  #admSaveMsg.no{display:block; background:#EDE0E0; color:#8A3B3B;}
-
-  /* ---- submissions list in admin panel ---- */
+  #admSaveMsg{font-size:0.85rem; margin-bottom:12px; padding:10px 14px; border-radius:var(--r-sm); display:none;}
+  #admSaveMsg.ok{display:block; background:var(--tint); color:var(--blue-deep);}
+  #admSaveMsg.no{display:block; background:var(--rose); color:var(--rose-ink);}
   .subs-list{display:flex; flex-direction:column; gap:12px;}
-  .sub-item{
-    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
-    padding:16px 18px; font-size:0.88rem;
-  }
+  .sub-item{background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:16px 18px; font-size:0.88rem;}
   .sub-item .sub-top{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;}
-  .sub-item .sub-top b{font-family:'M PLUS Rounded 1c',sans-serif; font-size:1rem;}
+  .sub-item .sub-top b{font-family:var(--font-display); font-weight:400; font-size:1.02rem;}
   .sub-item .sub-time{color:var(--ink-soft); font-size:0.78rem;}
-  .sub-item dl{display:grid; grid-template-columns:64px 1fr; gap:5px 10px; margin:12px 0 0; font-size:0.85rem;}
+  .sub-item dl{display:grid; grid-template-columns:70px 1fr; gap:5px 10px; margin:12px 0 0; font-size:0.85rem;}
   .sub-item dt{color:var(--ink-soft);}
   .sub-item dd{margin:0; word-break:break-word;}
   .sub-item .sub-actions{margin-top:12px;}
-  .sub-delete{
-    background:none; border:1px solid var(--line); border-radius:16px; padding:5px 12px;
-    font-size:0.78rem; color:var(--ink-soft); cursor:pointer;
-  }
+  .sub-delete{background:none; border:1px solid var(--line); border-radius:999px; padding:5px 12px; font-size:0.78rem; color:var(--ink-soft); cursor:pointer;}
   .subs-empty{color:var(--ink-soft); font-size:0.88rem; text-align:center; padding:20px 0;}
 </style>
 </head>
@@ -286,298 +468,507 @@
 
 <header>
   <nav class="wrap">
-    <a href="#top" class="logo"><span class="dot"></span>不是P人但還沒想好名字</a>
+    <a href="#top" class="logo"><span class="logo-mark"></span>不是P人但還沒想好名字</a>
     <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false"><span></span></button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#devices">租借方案</a></li>
-      <li><a href="#calendar">空檔查詢</a></li>
-      <li><a href="#rules">流程與注意事項</a></li>
-      <li><a href="#booking" class="nav-cta">預約表單</a></li>
+      <li><a href="#devices" data-tab="price">租金試算</a></li>
+      <li><a href="#calendar">查空檔</a></li>
+      <li><a href="#devices" data-tab="notice">預約須知</a></li>
+      <li><a href="#devices" data-tab="faq">常見問題</a></li>
+      <li><a href="#booking" class="nav-cta">我要預約</a></li>
     </ul>
   </nav>
 </header>
 
 <main id="top">
 
+  <!-- ================= HERO ================= -->
   <section class="hero">
-    <div class="wrap">
-      <h1>兩支機，租給需要的人</h1>
-      <p>Samsung Galaxy S23 Ultra、vivo X300 Ultra，皆可短租，先上系統查空檔，確認有空再填表預約，最後加 LINE 對到細節。</p>
-      <div class="hero-actions">
-        <a href="#calendar" class="btn btn-primary">查詢空檔</a>
-        <a href="#devices" class="btn btn-ghost">看租金方案</a>
+    <div class="wrap hero-grid">
+      <div>
+        <h1>手機借你，快門交給你</h1>
+        <p class="lede">vivo X300 Pro 跟 Ultra 都能租，長焦鏡頭、手柄也可以一起帶走。先看哪天有空，填個表，LINE 聊兩句，面交就搞定。</p>
+        <div class="hero-actions">
+          <a href="#calendar" class="btn btn-primary">看哪天有空</a>
+          <a href="#devices" class="btn btn-ghost">先算算多少錢</a>
+        </div>
+
+        <div class="week" aria-label="未來七天空檔速覽">
+          <div class="week-title"><b>這一週誰有空？</b><span>點淺藍色的日子直接預約</span></div>
+          <div id="weekStrip"></div>
+          <p class="week-foot">淺藍＝可以借，深色＝已被借走，黃框＝今天。</p>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="disc"></div>
+        <svg viewBox="0 0 260 430" xmlns="http://www.w3.org/2000/svg" role="img">
+          <defs>
+            <linearGradient id="bodyG" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#4E8696"/>
+              <stop offset="1" stop-color="#1F4452"/>
+            </linearGradient>
+            <linearGradient id="glassG" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#6FA3B3"/>
+              <stop offset="0.5" stop-color="#14262D"/>
+              <stop offset="1" stop-color="#0B171C"/>
+            </linearGradient>
+            <linearGradient id="barrelG" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#E9EEF0"/>
+              <stop offset="0.5" stop-color="#FFFFFF"/>
+              <stop offset="1" stop-color="#B9C6CB"/>
+            </linearGradient>
+          </defs>
+          <g transform="rotate(-6 120 210)">
+            <rect x="30" y="14" width="190" height="390" rx="38" fill="url(#bodyG)"/>
+            <rect x="30" y="14" width="190" height="390" rx="38" fill="none" stroke="#9CC3CF" stroke-opacity="0.45" stroke-width="2"/>
+            <!-- camera island -->
+            <circle cx="108" cy="108" r="64" fill="#0F1D23"/>
+            <circle cx="108" cy="108" r="64" fill="none" stroke="#7FB0BE" stroke-width="3"/>
+            <circle cx="108" cy="86" r="27" fill="#1A3039" stroke="#7FB0BE" stroke-width="2.5"/>
+            <circle cx="108" cy="86" r="19" fill="url(#glassG)"/>
+            <circle cx="102" cy="80" r="4" fill="#fff" fill-opacity="0.75"/>
+            <circle cx="78" cy="130" r="18" fill="#1A3039" stroke="#7FB0BE" stroke-width="2"/>
+            <circle cx="78" cy="130" r="12" fill="url(#glassG)"/>
+            <circle cx="140" cy="130" r="18" fill="#1A3039" stroke="#7FB0BE" stroke-width="2"/>
+            <circle cx="140" cy="130" r="12" fill="url(#glassG)"/>
+            <circle cx="152" cy="72" r="5" fill="#F4DD9B"/>
+          </g>
+          <!-- telephoto lens leaning in front -->
+          <g transform="rotate(14 190 330)">
+            <rect x="166" y="248" width="50" height="150" rx="12" fill="url(#barrelG)" stroke="#9FB2BA" stroke-width="1.5"/>
+            <rect x="166" y="248" width="50" height="22" rx="8" fill="#17343E"/>
+            <rect x="166" y="284" width="50" height="5" fill="#9FB2BA" fill-opacity="0.6"/>
+            <rect x="166" y="296" width="50" height="5" fill="#9FB2BA" fill-opacity="0.6"/>
+            <rect x="166" y="308" width="50" height="5" fill="#9FB2BA" fill-opacity="0.6"/>
+            <rect x="166" y="384" width="50" height="14" rx="6" fill="#17343E"/>
+          </g>
+        </svg>
+        <span class="sticker s1">滿 5 天 <b>9 折</b></span>
+        <span class="sticker s2">200mm 鏡頭 <b>$200/日</b></span>
+        <span class="sticker s3">南京三民・景美・南港 面交</span>
       </div>
     </div>
   </section>
 
-  <section id="devices">
+  <!-- ================= PRICE / NOTICE / FAQ ================= -->
+  <section id="devices" class="band">
     <div class="wrap">
       <div class="section-head">
-        <h2>機型與租金</h2>
-        <p>租金以日為單位、24 小時制計算。確認租借後需支付訂金，訂金不退還，詳見下方規則。</p>
+        <h2>租什麼、多少錢</h2>
+        <p>租金都用「一天 24 小時」算，連租越久越划算。想知道要花多少，往下拉有試算器可以玩。</p>
       </div>
 
-      <div class="device-card">
-        <h3>📱 Samsung Galaxy S23 Ultra</h3>
-        <span class="model-tag">512G</span>
-        <div class="table-scroll">
-          <table class="ledger">
-            <thead><tr><th>租期</th><th>費用</th></tr></thead>
-            <tbody>
-              <tr><td>單日</td><td>$800</td></tr>
-              <tr><td>2 天</td><td>$1,400</td></tr>
-              <tr><td>3 天以上</td><td>$650 / 日</td></tr>
-            </tbody>
-          </table>
+      <div class="info-tabs" role="tablist">
+        <button class="info-tab" role="tab" aria-selected="true" data-panel="price" type="button">🧮 租金試算</button>
+        <button class="info-tab" role="tab" aria-selected="false" data-panel="notice" type="button">📋 預約須知</button>
+        <button class="info-tab" role="tab" aria-selected="false" data-panel="faq" type="button">💬 常見問題</button>
+      </div>
+
+      <!-- ===== 租金試算 ===== -->
+      <div class="info-panel" id="panel-price">
+
+        <div class="price-top">
+          <article class="phone-card">
+            <span class="card-tag">好上手</span>
+            <h3>vivo X300 Pro</h3>
+            <p class="sub">日常、旅行、追星都夠用</p>
+            <p class="big-price"><span class="cur">NT$</span><b>650</b><span class="per">/ 日</span></p>
+            <ul class="perks">
+              <li>連租 3 天 <b>95 折</b></li>
+              <li>連租 5 天 <b>9 折</b></li>
+            </ul>
+          </article>
+
+          <article class="phone-card hot">
+            <span class="card-tag">旗艦首選</span>
+            <h3>vivo X300 Ultra</h3>
+            <p class="sub">1TB 大容量，錄影拍照放心拍</p>
+            <p class="big-price"><span class="cur">NT$</span><b>800</b><span class="per">/ 日</span></p>
+            <ul class="perks">
+              <li>連租 3 天 <b>95 折</b></li>
+              <li>連租 5 天 <b>9 折</b></li>
+            </ul>
+          </article>
+        </div>
+
+        <h3 class="acc-title">想拍得更遠？配件也能加租</h3>
+        <div class="acc-grid">
+          <article class="acc-card">
+            <h3>🔭 200mm 增距鏡</h3>
+            <div class="row"><span>跟手機一起租</span><b>$200<small> /日</small></b></div>
+            <div class="row"><span>只租鏡頭</span><b>$250<small> /日</small></b></div>
+            <p class="note">連租 3 天、5 天一樣有 95 折、9 折。</p>
+          </article>
+          <article class="acc-card">
+            <h3>🔭 400mm 增距鏡</h3>
+            <div class="row"><span>跟手機一起租</span><b>$200<small> /日</small></b></div>
+            <div class="row"><span>只租鏡頭</span><b>$250<small> /日</small></b></div>
+            <p class="note">連租 3 天、5 天一樣有 95 折、9 折。</p>
+          </article>
+          <article class="acc-card">
+            <h3>🎥 專業攝影手柄</h3>
+            <div class="row"><span>每次租借</span><b>$100<small> /次</small></b></div>
+            <p class="note">算「次」不算「天」，所以不參與天數折扣。</p>
+          </article>
+        </div>
+        <div class="tip"><span class="ico">💡</span><span>小撇步：鏡頭跟手機一起租，每天直接省 $50。想拍演唱會或活動，建議整組帶走。</span></div>
+
+        <div class="calc">
+          <div class="calc-main">
+            <h3>租金試算機</h3>
+            <p>勾你想借的東西、選好天數，右邊會立刻幫你算好。折扣跟合租價都自動套用，不用自己按計算機。</p>
+
+            <div class="calc-label">1. 想借哪些？</div>
+            <div class="calc-items" id="calcItems">
+              <label class="calc-item">
+                <input type="checkbox" data-key="pro" data-rate="650">
+                <span class="calc-item-main"><span class="calc-item-name">vivo X300 Pro</span></span>
+                <span class="calc-item-price">NT$650 / 日</span>
+              </label>
+              <label class="calc-item">
+                <input type="checkbox" data-key="ultra" data-rate="800" checked>
+                <span class="calc-item-main"><span class="calc-item-name">vivo X300 Ultra 1TB</span></span>
+                <span class="calc-item-price">NT$800 / 日</span>
+              </label>
+              <label class="calc-item">
+                <input type="checkbox" data-key="lens200" data-combo="200" data-solo="250">
+                <span class="calc-item-main">
+                  <span class="calc-item-name">200mm 增距鏡</span>
+                  <span class="calc-item-sub">跟手機一起租：$200/日</span>
+                </span>
+                <span class="calc-item-price">NT$200 / 日</span>
+              </label>
+              <label class="calc-item">
+                <input type="checkbox" data-key="lens400" data-combo="200" data-solo="250">
+                <span class="calc-item-main">
+                  <span class="calc-item-name">400mm 增距鏡</span>
+                  <span class="calc-item-sub">跟手機一起租：$200/日</span>
+                </span>
+                <span class="calc-item-price">NT$200 / 日</span>
+              </label>
+              <label class="calc-item">
+                <input type="checkbox" data-key="handle" data-flat="100">
+                <span class="calc-item-main">
+                  <span class="calc-item-name">專業攝影手柄</span>
+                  <span class="calc-item-sub">算次數，不會跟著天數打折</span>
+                </span>
+                <span class="calc-item-price">NT$100 / 次</span>
+              </label>
+            </div>
+
+            <div class="calc-label">2. 借幾天？</div>
+            <div class="calc-days">
+              <button type="button" id="calcDayMinus" aria-label="減少天數">－</button>
+              <input type="number" id="calcDays" value="1" min="1" aria-label="租借天數">
+              <button type="button" id="calcDayPlus" aria-label="增加天數">＋</button>
+              <span>天</span>
+            </div>
+          </div>
+
+          <aside class="calc-out" aria-live="polite">
+            <h3>預估總金額</h3>
+            <p class="calc-total-num"><small>NT$</small><span id="calcTotal">0</span></p>
+            <div class="calc-rows">
+              <div class="calc-row"><span>每日合計</span><span id="calcDaily">NT$0</span></div>
+              <div class="calc-row"><span>租借天數</span><span id="calcDaysOut">1 天</span></div>
+              <div class="calc-row"><span>連租折扣</span><span id="calcDiscount">還沒到，加油</span></div>
+              <div class="calc-row" id="calcHandleRow" style="display:none;"><span>手柄（一次）</span><span id="calcHandleFee">NT$0</span></div>
+            </div>
+            <button type="button" class="btn btn-butter" id="calcBook">照這組去預約</button>
+            <p class="calc-note">這是粗估金額，實際內容以 LINE 確認為準。</p>
+          </aside>
         </div>
       </div>
 
-      <div class="device-card">
-        <h3>📱 vivo X300 Ultra</h3>
-        <span class="model-tag">1TB</span>
-        <div class="table-scroll">
-          <table class="ledger">
-            <thead><tr><th>租期</th><th>費用</th></tr></thead>
-            <tbody>
-              <tr><td>單日</td><td>$900</td></tr>
-              <tr><td>2 天</td><td>$1,600</td></tr>
-              <tr><td>3 天以上</td><td>$800 / 日</td></tr>
-            </tbody>
-          </table>
+      <!-- ===== 預約須知 ===== -->
+      <div class="info-panel" id="panel-notice" hidden>
+        <p class="notice-lede">租之前花三分鐘看一下，後面會輕鬆很多。重點數字先給你，細節在下面。</p>
+
+        <div class="facts">
+          <div class="fact"><b>$500</b><span>訂金，確認有檔期後 24 小時內匯款</span></div>
+          <div class="fact"><b>$3,000<small> 或 </small>$60,000</b><span>押金 A（留證件）／ B（免留證件）</span></div>
+          <div class="fact"><b>$200<small> /小時</small></b><span>超過時間才歸還的逾期費</span></div>
         </div>
-        <ul class="addon-list">
-          <li><span>增距鏡 200mm・搭配手機租借</span><span>$250 / 日</span></li>
-          <li><span>增距鏡 200mm・單租借</span><span>$300 / 日</span></li>
-          <li><span>手柄</span><span>$100 / 日</span></li>
-        </ul>
+
+        <h3 class="notice-h">從私訊到歸還，一共六步</h3>
+        <div class="timeline">
+          <div class="rule-step">
+            <span class="rule-num">1</span>
+            <div><b>LINE 私訊，聊機型跟日期</b><p>告訴我們想借哪支、哪幾天，我們幫你確認有沒有空檔。</p></div>
+          </div>
+          <div class="rule-step">
+            <span class="rule-num">2</span>
+            <div><b>匯訂金，幫你把檔期佔好</b><p>確認有空後 24 小時內匯 500 元訂金，收到款才算數；超過時間檔期會讓給下一位。</p></div>
+          </div>
+          <div class="rule-step">
+            <span class="rule-num">3</span>
+            <div><b>面交碰面，一起驗機</b><p>帶著雙證件來，我們一起把機器檢查一遍，確認都沒問題。</p></div>
+          </div>
+          <div class="rule-step">
+            <span class="rule-num">4</span>
+            <div><b>付尾款，選押金方案</b><p>當場付清剩下的租金，再選要留證件（方案 A）還是付押金（方案 B）。</p></div>
+          </div>
+          <div class="rule-step">
+            <span class="rule-num">5</span>
+            <div><b>交機，開拍！</b><p>雙方都沒問題就簽約交機，租期從這一刻開始算。</p></div>
+          </div>
+          <div class="rule-step">
+            <span class="rule-num">6</span>
+            <div><b>歸還驗機，押金證件原封奉還</b><p>準時面交歸還，機器沒問題就當場把押金和證件還給你。</p></div>
+          </div>
+        </div>
+
+        <h3 class="notice-h">規則懶人包</h3>
+        <div class="rule-grid">
+
+          <div class="rule-card">
+            <h3>🗓️ 預約與訂金</h3>
+            <ul>
+              <li>訂金一律 <b>500 元</b>，匯款成功才算數。口頭說「我要」我們很感動，但檔期沒辦法先幫你留。</li>
+              <li>確認有檔期後請在 <b>24 小時內</b>匯款，沒收到的話，位子會自動讓給下一位，不另外通知。</li>
+              <li>付了訂金之後，如果自己改期、取消或臨時有事沒出現，訂金就回不來囉。</li>
+              <li>如果是活動主辦單位官方取消或延期，可以免費取消或改期，只要在公告後 <b>3 天內</b>告訴我們；超過 3 天就當一般取消處理，訂金不退。</li>
+            </ul>
+          </div>
+
+          <div class="rule-card">
+            <h3>⏱️ 租期與逾期</h3>
+            <ul>
+              <li>以 <b>24 小時</b>為一天，不滿 24 小時也算一天（所以提早還不會比較便宜喔）。</li>
+              <li>超過約定時間才歸還，每小時加收 <b>200 元</b>，不滿一小時也以一小時計。鬧鐘設起來，準時最美。</li>
+            </ul>
+          </div>
+
+          <div class="rule-card">
+            <h3>🪪 押金方案</h3>
+            <ul>
+              <li><b>方案 A：</b>出示雙證件核對（身分證＋健保卡或駕照），留下其中一項正本，另付押金 <b>3,000 元</b>。</li>
+              <li><b>方案 B：</b>不想留證件的話，改付押金 <b>60,000 元</b>。</li>
+              <li>歸還當天機器確認沒問題，證件跟押金就會當場還給你。</li>
+            </ul>
+          </div>
+
+          <div class="rule-card">
+            <h3>🛠️ 壞了或不見怎麼辦</h3>
+            <ul>
+              <li>交機時我們會一起檢查機況，先講清楚，之後才不會各說各話。</li>
+              <li>遺失、被偷或修不好：依原廠售價與維修費用<b>較高者</b>賠償。</li>
+              <li>螢幕、鏡頭、配件損壞或遺失：依原廠維修費或全額售價賠償。</li>
+            </ul>
+          </div>
+
+          <div class="rule-card wide">
+            <h3>📍 面交地點</h3>
+            <div class="spots">
+              <span>捷運綠線・南京三民站</span>
+              <span>捷運綠線・景美站</span>
+              <span>捷運藍線・南港站</span>
+            </div>
+            <ul>
+              <li>只限面交，不寄送。</li>
+              <li>其他地點可以另外討論，也歡迎直接問我們。</li>
+              <li>特殊情形開放新竹、台南歸還，需要提前細談。</li>
+            </ul>
+          </div>
+
+          <div class="rule-card wide">
+            <h3>🛡️ 其他小提醒</h3>
+            <ul>
+              <li>租借人需年滿 <b>18 歲</b>。</li>
+              <li>因場館規定或個人臨時狀況沒辦法使用，仍依原規則計費，不予退款。</li>
+              <li>可以帶出國用，<b>不加價</b>，但請先跟我們說一聲。</li>
+              <li>請不要安裝來路不明的 App，也不要 ROOT 或越獄。</li>
+              <li>不能轉租、轉借給別人。</li>
+              <li>檔案傳輸請在歸還前自行備份，現場不提供等待時間。</li>
+              <li>歸還後我們會初始化並清除資料，沒備份的檔案就救不回來了。</li>
+            </ul>
+          </div>
+        </div>
+        <p class="fine">以上規則出租方保有調整的權利。支付訂金，就代表你已經看過並同意囉。</p>
       </div>
 
-      <div class="section-head" style="margin-top:44px;">
-        <h2>訂金與押金</h2>
-        <p>確認租借後需先付訂金完成預訂，租借當日需提供押租借人證件正本（身分證／健保卡／駕照擇一）與押金。</p>
+      <!-- ===== 常見問題 ===== -->
+      <div class="info-panel" id="panel-faq" hidden>
+        <div class="faq-list">
+          <details>
+            <summary>增距鏡可以只租鏡頭、不租手機嗎？</summary>
+            <div class="body"><p>可以！只租鏡頭是 $250／天；如果跟手機一起租，鏡頭每天只要 $200。</p></div>
+          </details>
+          <details>
+            <summary>24 小時是從什麼時候開始算？</summary>
+            <div class="body"><p>從我們面交、你拿到手機的那一刻開始算，滿 24 小時算一天。不滿 24 小時也算一天，所以時間抓寬鬆一點比較划算。</p></div>
+          </details>
+          <details>
+            <summary>要去哪裡面交？</summary>
+            <div class="body"><p>主要約在捷運南京三民站、景美站、南港站。其他地點也可以聊，直接在 LINE 跟我們說你方便的地方就好。</p></div>
+          </details>
+          <details>
+            <summary>手機可以帶出國嗎？</summary>
+            <div class="body"><p>可以，而且不用加價！只要記得租借前先跟我們說一聲就行。</p></div>
+          </details>
+          <details>
+            <summary>租借當天要準備什麼？</summary>
+            <div class="body"><p>帶雙證件（身分證＋健保卡或駕照擇一），再決定要走方案 A（留一項證件正本＋押金 $3,000）還是方案 B（免留證件、押金 $60,000）。</p></div>
+          </details>
+          <details>
+            <summary>租了之後活動取消，可以取消預約嗎？</summary>
+            <div class="body"><p>如果是主辦單位官方宣布取消或延期，公告後 3 天內跟我們說，就能免費取消或改期。如果是自己改變心意或臨時有事，訂金就不退囉。</p></div>
+          </details>
+          <details>
+            <summary>手機弄壞了怎麼辦？</summary>
+            <div class="body"><p>先別慌，第一時間聯絡我們。依損壞狀況，依原廠維修報價賠償；遺失、被偷或修不好，則依原價或維修費較高者賠償。</p></div>
+          </details>
+        </div>
       </div>
-      <div class="table-scroll">
-        <table class="ledger">
-          <thead><tr><th>租期</th><th>訂金</th></tr></thead>
-          <tbody>
-            <tr><td>1–2 天</td><td>$500</td></tr>
-            <tr><td>3–4 天</td><td>$1,000</td></tr>
-            <tr><td>5–9 天</td><td>$1,500</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="deposit-grid">
-        <div class="deposit-item"><b>$3,000</b><span>押金（國內）</span></div>
-        <div class="deposit-item"><b>$5,000</b><span>押金（國外，需提前告知）</span></div>
-        <div class="deposit-item"><b>$30,000</b><span>押金（無證件者）</span></div>
-      </div>
-      <p class="warn-box">⚠️ 收到訂金後，若租賃方取消租借，或無法配合出租方面交時間與地點而取消租借，訂金將不退還。</p>
+
     </div>
   </section>
 
-  <section class="alt" id="calendar">
+  <!-- ================= CALENDAR ================= -->
+  <section id="calendar">
     <div class="wrap">
       <div class="section-head">
-        <h2>檔期確認</h2>
-        <p>先選機型，再點日期查詢是否有空。亮色可租、暗色並畫槓線代表已被預訂。點選可租借的日期會直接帶入下方預約表單。</p>
+        <h2>哪天有空？點點看</h2>
+        <p>先選手機，再點日期。淺藍色可以借，深色畫線代表已經被借走了。點到有空的日子，會自動幫你填進預約表單。</p>
       </div>
 
       <div class="cal-tabs" role="tablist" aria-label="選擇機型">
-        <button class="cal-tab" role="tab" aria-selected="true" data-device="s23">Samsung S23 Ultra</button>
-        <button class="cal-tab" role="tab" aria-selected="false" data-device="vivo">vivo X300 Ultra</button>
+        <button class="cal-tab" role="tab" aria-selected="true" data-device="pro" type="button">vivo X300 Pro</button>
+        <button class="cal-tab" role="tab" aria-selected="false" data-device="ultra" type="button">vivo X300 Ultra</button>
       </div>
 
       <div class="cal-card">
         <div class="cal-nav">
-          <button id="prevMonth" aria-label="上個月">‹</button>
+          <button id="prevMonth" aria-label="上個月" type="button">‹</button>
           <h3 id="calMonthLabel"></h3>
-          <button id="nextMonth" aria-label="下個月">›</button>
+          <button id="nextMonth" aria-label="下個月" type="button">›</button>
         </div>
         <div class="cal-grid" id="calDow"></div>
         <div class="cal-grid" id="calDays"></div>
         <div class="cal-legend">
-          <span><span class="swatch a"></span>可租借</span>
-          <span><span class="swatch b"></span>已預訂</span>
+          <span><span class="swatch a"></span>可以借</span>
+          <span><span class="swatch b"></span>已被借走</span>
+          <span><span class="swatch t"></span>今天</span>
         </div>
         <div id="calStatus" role="status" aria-live="polite"></div>
       </div>
-      <p class="cal-note">系統上顯示「有空檔」代表當下可預訂，實際租借時間仍需私訊 LINE 雙方確認後才算完成預訂。</p>
+      <p class="cal-note">網站上看到有空，只是代表目前還沒被預訂；LINE 跟我們確認、付完訂金，這個檔期才算真的是你的。</p>
     </div>
   </section>
 
-  <section id="rules">
+  <!-- ================= BOOKING ================= -->
+  <section class="band" id="booking">
     <div class="wrap">
       <div class="section-head">
-        <h2>預訂流程</h2>
-      </div>
-      <div class="steps">
-        <div class="step"><span class="num"></span><p>上系統查詢空檔，有空檔就代表有機可租。</p></div>
-        <div class="step"><span class="num"></span><p>確認租借時間，填寫下方預約表單。</p></div>
-        <div class="step"><span class="num"></span><p>私訊 LINE 官方帳號，雙方確認租借時間沒問題。</p></div>
-        <div class="step"><span class="num"></span><p>討論面交時間與地點。</p></div>
-        <div class="step"><span class="num"></span><p>取得訂金匯款帳號，完成匯款。</p></div>
-        <div class="step"><span class="num"></span><p>出租方確認收到訂金，預訂完成。</p></div>
+        <h2>填個表，我們就知道你要來了</h2>
+        <p>填完送出後，記得再到 LINE 跟我們說一聲，這樣才算完成預約。</p>
       </div>
 
-      <div class="section-head" style="margin-top:44px;">
-        <h2>面交地點與方式</h2>
-        <p>交易方式只限面交，其餘地點可細談，特殊情形開放新竹、台南歸還（需細談）。</p>
-      </div>
-      <div class="points">
-        <span class="point">捷運綠線・南京三民站</span>
-        <span class="point">捷運綠線・景美站</span>
-        <span class="point">捷運藍線・南港站</span>
-      </div>
+      <div class="booking-wrap">
+        <div>
+          <form class="form-card" id="bookingForm" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="booking">
+            <p class="honeypot"><label>請勿填寫此欄 <input name="bot-field"></label></p>
 
-      <div class="section-head" style="margin-top:44px;">
-        <h2>租借規則與注意事項</h2>
-        <p>支付訂金後即代表同意以下所有規範，請於支付前詳閱。</p>
-      </div>
-      <div class="faq-list">
-        <details>
-          <summary>面交當日流程</summary>
-          <div class="body">
-            <p><b>出租時：</b></p>
-            <ul>
-              <li>說明設備使用注意事項</li>
-              <li>檢查設備、確認配件（會錄影留存出借設備狀況）</li>
-              <li>確認承租人電話與地址</li>
-              <li>收取證件、押金與餘款（可現金／匯款）</li>
-            </ul>
-            <p><b>歸還時：</b></p>
-            <ul>
-              <li>檢查設備、確認配件、確認帳戶已登出</li>
-              <li>歸還證件與押金</li>
-            </ul>
+            <fieldset>
+              <legend>怎麼稱呼你？</legend>
+              <div class="field-grid">
+                <div class="field">
+                  <label for="name">姓名</label>
+                  <input id="name" name="name" type="text" required autocomplete="name">
+                </div>
+                <div class="field">
+                  <label for="phone">聯絡電話</label>
+                  <input id="phone" name="phone" type="tel" required autocomplete="tel">
+                </div>
+              </div>
+              <div class="field">
+                <label for="lineid">LINE ID</label>
+                <input id="lineid" name="lineid" type="text" required>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>想借什麼、借多久？</legend>
+              <div class="field-grid">
+                <div class="field">
+                  <label for="device">想租的手機</label>
+                  <select id="device" name="device">
+                    <option>vivo X300 Pro</option>
+                    <option selected>vivo X300 Ultra</option>
+                    <option>Pro 跟 Ultra 兩支都租</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="startdate">從哪天開始借</label>
+                  <input id="startdate" name="startdate" type="date">
+                </div>
+              </div>
+              <div class="field-grid">
+                <div class="field">
+                  <label for="days">借幾天</label>
+                  <input id="days" name="days" type="number" min="1" placeholder="例如 3">
+                </div>
+                <div class="field">
+                  <label for="region">會帶出國嗎？</label>
+                  <select id="region" name="region">
+                    <option value="domestic">只在台灣用</option>
+                    <option value="overseas">要帶出國（我會先告知）</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <span class="lbl">要不要加租配件？（可複選）</span>
+                <div class="chips">
+                  <label class="chip"><input type="checkbox" name="addons" value="200mm 增距鏡" data-key="lens200"> 200mm 增距鏡</label>
+                  <label class="chip"><input type="checkbox" name="addons" value="400mm 增距鏡" data-key="lens400"> 400mm 增距鏡</label>
+                  <label class="chip"><input type="checkbox" name="addons" value="專業攝影手柄" data-key="handle"> 專業攝影手柄</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>押金跟面交</legend>
+              <div class="field">
+                <label for="idtype">想選哪個押金方案？</label>
+                <select id="idtype" name="idtype">
+                  <option>方案 A：留一項證件正本＋押金 $3,000</option>
+                  <option>方案 B：免留證件＋押金 $60,000</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="note">想約哪個面交地點？還有什麼想告訴我們的？</label>
+                <textarea id="note" name="note" placeholder="例如：南京三民站，週六下午；想要整組帶去演唱會"></textarea>
+              </div>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary">送出預約資料</button>
+            <p class="form-note">送出只代表你有興趣，實際檔期仍以 LINE 雙方確認為準。</p>
+          </form>
+
+          <div class="line-card" id="formSuccess" style="display:none;">
+            <div class="big">📨</div>
+            <h3>已收到表單，請私訊確認</h3>
+            <p>你的預約資料我們收到了！最後一步，加官方 LINE 跟我們說一聲剛剛送出的機型和日期，確認沒問題才算完成預約。</p>
+            <a class="line-btn" href="https://line.me/ti/p/~請替換成你的LINE官方帳號ID" target="_blank" rel="noopener">去 LINE 找我們</a>
           </div>
-        </details>
-        <details>
-          <summary>臨時延長租借</summary>
-          <div class="body">
-            <p><b>流程：</b>提前 3 小時聯繫承租方 → 雙方確認延長條件 → 確認歸還時間 → 計算費用並匯款 → 延長完成。</p>
-            <p><b>條件：</b>需於歸還「3 小時前」提出，剛好 3 小時或 3 小時內才提出恕不受理。</p>
-            <p><b>費用：</b>延長單位以日計算（24 小時制），按原標準收費，並立即匯款才算延長成功，超過 20 分鐘未完成匯款則取消延長。例如原單日收費 $700，需延長一日，則以兩日費用 $1,400 計算，以此類推。</p>
-          </div>
-        </details>
-        <details>
-          <summary>基本規則</summary>
-          <div class="body">
-            <ul>
-              <li>租借人需滿 18 歲</li>
-              <li>租借時間計算範例：1/1 17:00 借 – 1/2 17:00 還，歸還時間未滿一日以一日計算</li>
-              <li>請記得預留傳輸檔案的時間</li>
-              <li>禁止轉租</li>
-              <li>相機設定可自行調整，其餘手機設定請勿任意更動或恢復原廠設定，亦不可刪除原有 App</li>
-              <li>請勿任意下載應用程式，如有需求請事先告知</li>
-              <li>歸還前請將個人資料清空並將帳號登出，以保護個資隱私</li>
-            </ul>
-          </div>
-        </details>
-        <details>
-          <summary>遲還與損壞</summary>
-          <div class="body">
-            <p>⚠️ 若延遲歸還，依單日 $1,800 價格計算。</p>
-            <p>⚠️ 若有手機損毀或刮傷等情況，需額外支付手機維修費用，依原廠維修報價評估賠償，請租借人自行注意保管與使用。</p>
-          </div>
-        </details>
-        <details>
-          <summary>出國租借</summary>
-          <div class="body">
-            <p>可租借出國使用，需提前告知並依國外押金標準（$5,000）計算。</p>
-          </div>
-        </details>
-        <details>
-          <summary>其他</summary>
-          <div class="body">
-            <p>出租方保有變更修改以上規範的權利。支付訂金後即代表同意以上所有規範。</p>
-          </div>
-        </details>
+        </div>
+
+        <aside class="side-card">
+          <h3>送出之後會發生什麼？</h3>
+          <ol>
+            <li>我們收到你的表單。</li>
+            <li>你到 LINE 私訊，跟我們確認日期、面交地點。</li>
+            <li>確認有檔期，匯 $500 訂金。</li>
+            <li>收到訂金，檔期就是你的了！</li>
+          </ol>
+        </aside>
       </div>
     </div>
   </section>
 
-  <section class="alt" id="booking">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>確認出租表填寫</h2>
-        <p>先在上方確認好空檔日期，再填寫以下資料。送出後請務必加 LINE 私訊，雙方確認後才算完成預訂。</p>
-      </div>
-      <form class="form-card" id="bookingForm" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="booking">
-        <p class="honeypot"><label>請勿填寫此欄 <input name="bot-field"></label></p>
-
-        <div class="field-grid">
-          <div class="field">
-            <label for="name">姓名</label>
-            <input id="name" name="name" type="text" required>
-          </div>
-          <div class="field">
-            <label for="phone">聯絡電話</label>
-            <input id="phone" name="phone" type="tel" required>
-          </div>
-        </div>
-
-        <div class="field-grid">
-          <div class="field">
-            <label for="lineid">LINE ID</label>
-            <input id="lineid" name="lineid" type="text" required>
-          </div>
-          <div class="field">
-            <label for="device">想租的機型</label>
-            <select id="device" name="device">
-              <option>Samsung Galaxy S23 Ultra</option>
-              <option>vivo X300 Ultra</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field-grid">
-          <div class="field">
-            <label for="startdate">租借起始日</label>
-            <input id="startdate" name="startdate" type="date">
-          </div>
-          <div class="field">
-            <label for="days">租借天數</label>
-            <input id="days" name="days" type="number" min="1">
-          </div>
-        </div>
-
-        <div class="field-grid">
-          <div class="field">
-            <label for="region">國內／國外使用</label>
-            <select id="region" name="region">
-              <option value="domestic">國內</option>
-              <option value="overseas">國外（需提前告知）</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="idtype">證件類型</label>
-            <select id="idtype" name="idtype">
-              <option>身分證</option>
-              <option>健保卡</option>
-              <option>駕照</option>
-              <option>無證件</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="note">面交地點偏好與備註</label>
-          <textarea id="note" name="note" placeholder="例如：南京三民站、需搭配增距鏡等"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary">送出預約資料</button>
-        <p class="form-note">送出表單僅代表提出預訂需求，實際檔期仍以雙方於 LINE 確認為準。</p>
-      </form>
-
-      <div class="line-card" id="formSuccess" style="display:none;">
-        <h3>已收到表單，請私訊確認</h3>
-        <p>你的預約資料已經收到了。請務必加官方 LINE 帳號私訊，告知你剛剛送出的租借時間與機型，雙方確認沒問題才算完成預訂。</p>
-        <a class="line-btn" href="https://line.me/ti/p/~請替換成你的LINE官方帳號ID" target="_blank" rel="noopener">加 LINE 好友確認</a>
-      </div>
-    </div>
-  </section>
-
+  <!-- ================= ADMIN ================= -->
   <section class="admin-section" id="adminSection">
     <div class="wrap">
       <div class="admin-toggle-wrap" id="adminToggleWrap">
@@ -585,7 +976,7 @@
       </div>
 
       <div class="admin-gate" id="adminGate" style="display:none;">
-        <h3 style="font-size:1.05rem;">後台登入</h3>
+        <h3 style="font-size:1.1rem;">後台登入</h3>
         <p style="color:var(--ink-soft); font-size:0.88rem; margin-top:6px;">輸入密碼以管理檔期</p>
         <input id="admPwInput" type="password" inputmode="numeric" placeholder="密碼" autocomplete="off">
         <button id="admPwSubmit" type="button">登入</button>
@@ -594,14 +985,14 @@
 
       <div class="admin-panel-inner" id="adminPanel" style="display:none;">
         <div class="admin-save-row">
-          <h2 style="font-size:1.15rem;">檔期管理</h2>
+          <h2 style="font-size:1.3rem;">檔期管理</h2>
           <button class="btn btn-primary" id="admSaveBtn" type="button">儲存變更</button>
         </div>
         <div id="admSaveMsg"></div>
 
         <div class="cal-tabs" role="tablist">
-          <button class="cal-tab" role="tab" aria-selected="true" data-device="s23" id="admTabS23">Samsung S23 Ultra</button>
-          <button class="cal-tab" role="tab" aria-selected="false" data-device="vivo" id="admTabVivo">vivo X300 Ultra</button>
+          <button class="cal-tab" role="tab" aria-selected="true" data-device="pro" id="admTabPro" type="button">vivo X300 Pro</button>
+          <button class="cal-tab" role="tab" aria-selected="false" data-device="ultra" id="admTabUltra" type="button">vivo X300 Ultra</button>
         </div>
 
         <div class="cal-card">
@@ -617,10 +1008,10 @@
             <span><span class="swatch b"></span>已預訂（點一下改回可租借）</span>
           </div>
         </div>
-        <p class="cal-note">點日期只會先在畫面上切換顏色，記得改完要按上面「儲存變更」才會真的更新到上方的檔期確認。</p>
+        <p class="cal-note">點日期只會先在畫面上切換顏色，記得改完要按上面「儲存變更」才會真的更新到網站上的檔期。</p>
 
         <div class="admin-save-row" style="margin-top:44px;">
-          <h2 style="font-size:1.15rem;">預約表單記錄</h2>
+          <h2 style="font-size:1.3rem;">預約表單記錄</h2>
           <button class="btn btn-ghost" id="admRefreshSubs" type="button">重新整理</button>
         </div>
         <div id="admSubsList" class="subs-list"></div>
@@ -631,8 +1022,9 @@
 </main>
 
 <footer>
-  <div class="wrap">
-    不是P人但還沒想好名字 ｜ Samsung Galaxy S23 Ultra・vivo X300 Ultra 手機租借 ｜ 交易方式限面交
+  <div class="wrap foot">
+    <a href="#top" class="logo"><span class="logo-mark"></span>不是P人但還沒想好名字</a>
+    <span>vivo X300 Pro・vivo X300 Ultra 手機租借 ｜ 只限面交</span>
   </div>
 </footer>
 
@@ -652,8 +1044,8 @@
   // ---- calendar data ----
   // 預設示範資料：如果讀取後台資料失敗（例如離線預覽），就先顯示這組假資料
   let bookedDates = {
-    s23: ['2026-09-05', '2026-09-06', '2026-09-12', '2026-09-20'],
-    vivo: ['2026-09-03', '2026-09-04', '2026-09-18', '2026-09-19']
+    pro: ['2026-09-05', '2026-09-06', '2026-09-12', '2026-09-20'],
+    ultra: ['2026-09-03', '2026-09-04', '2026-09-18', '2026-09-19']
   };
 
   async function loadBookedDates(){
@@ -661,9 +1053,10 @@
       const res = await fetch('/.netlify/functions/get-bookings');
       if(res.ok){
         const data = await res.json();
-        if(data && data.s23 && data.vivo){
+        if(data && data.pro && data.ultra){
           bookedDates = data;
           renderCalendar();
+          renderWeekStrip();
         }
       }
     } catch(err){
@@ -672,7 +1065,7 @@
   }
 
   const dowNames = ['日','一','二','三','四','五','六'];
-  let currentDevice = 's23';
+  let currentDevice = 'pro';
   let viewDate = new Date(); // 從今天所在月份開始
 
   const calDow = document.getElementById('calDow');
@@ -728,15 +1121,50 @@
         btn.addEventListener('click', () => showStatus(dateStr, false));
       } else {
         btn.className = 'day available';
-        btn.addEventListener('click', () => {
-          showStatus(dateStr, true);
-          document.getElementById('startdate').value = dateStr;
-          document.getElementById('device').value = currentDevice === 's23' ? 'Samsung Galaxy S23 Ultra' : 'vivo X300 Ultra';
-          document.getElementById('booking').scrollIntoView({behavior:'smooth', block:'start'});
-        });
+        btn.addEventListener('click', () => pickDate(dateStr, currentDevice, true));
       }
+      if(thisDate.getTime() === today.getTime()) btn.classList.add('today');
       calDays.appendChild(btn);
     }
+  }
+
+  const deviceName = k => k === 'pro' ? 'vivo X300 Pro' : 'vivo X300 Ultra';
+
+  function pickDate(dateStr, dev, showMsg){
+    if(showMsg) showStatus(dateStr, true);
+    document.getElementById('startdate').value = dateStr;
+    document.getElementById('device').value = deviceName(dev);
+    document.getElementById('booking').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  // ---- hero: 這一週空檔速覽 ----
+  function renderWeekStrip(){
+    const box = document.getElementById('weekStrip');
+    if(!box) return;
+    box.innerHTML = '';
+    const today = new Date(); today.setHours(0,0,0,0);
+    ['pro','ultra'].forEach(dev => {
+      const row = document.createElement('div');
+      row.className = 'week-row';
+      const label = document.createElement('div');
+      label.className = 'week-label';
+      label.textContent = dev === 'pro' ? 'X300 Pro' : 'X300 Ultra';
+      row.appendChild(label);
+      for(let i = 0; i < 7; i++){
+        const dt = new Date(today); dt.setDate(today.getDate() + i);
+        const ds = fmtDate(dt.getFullYear(), dt.getMonth(), dt.getDate());
+        const isBooked = (bookedDates[dev] || []).includes(ds);
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'wd ' + (isBooked ? 'booked' : 'available') + (i === 0 ? ' today' : '');
+        b.innerHTML = `<span class="wd-dow">${dowNames[dt.getDay()]}</span><span class="wd-num">${dt.getDate()}</span>`;
+        b.setAttribute('aria-label', `${deviceName(dev)} ${ds} ${isBooked ? '已被借走' : '可以借'}`);
+        if(isBooked) b.disabled = true;
+        else b.addEventListener('click', () => pickDate(ds, dev, false));
+        row.appendChild(b);
+      }
+      box.appendChild(row);
+    });
   }
 
   function showStatus(dateStr, ok){
@@ -744,17 +1172,17 @@
     if(ok){
       calStatus.classList.remove('no');
       calStatus.classList.add('ok');
-      calStatus.textContent = `${dateStr} 可租借，已帶入下方預約表單，請繼續填寫其他資料。`;
+      calStatus.textContent = `${dateStr} 有空！已經幫你填進預約表單了，接著補完其他資料就好。`;
     } else {
       calStatus.classList.remove('ok');
       calStatus.classList.add('no');
-      calStatus.textContent = `${dateStr} 已被預訂，請選擇其他日期。`;
+      calStatus.textContent = `${dateStr} 已經被借走了，換個日子試試看？`;
     }
   }
 
-  document.querySelectorAll('.cal-tab').forEach(tab => {
+  document.querySelectorAll('#calendar .cal-tab').forEach(tab => {
     tab.addEventListener('click', () => {
-      document.querySelectorAll('.cal-tab').forEach(t => t.setAttribute('aria-selected','false'));
+      document.querySelectorAll('#calendar .cal-tab').forEach(t => t.setAttribute('aria-selected','false'));
       tab.setAttribute('aria-selected','true');
       currentDevice = tab.dataset.device;
       calStatus.classList.remove('show');
@@ -774,7 +1202,13 @@
   });
 
   renderCalendar();
+  renderWeekStrip();
   loadBookedDates();
+
+  (function(){
+    const t = new Date();
+    document.getElementById('startdate').min = fmtDate(t.getFullYear(), t.getMonth(), t.getDate());
+  })();
 
   // ---- booking form: submit via AJAX, store in our own submissions list ----
   const bookingForm = document.getElementById('bookingForm');
@@ -790,6 +1224,7 @@
       body: new URLSearchParams(formData).toString()
     }).catch(() => {});
 
+    const addons = formData.getAll('addons');
     const payload = {
       action: 'create',
       name: formData.get('name'),
@@ -800,7 +1235,7 @@
       days: formData.get('days'),
       region: formData.get('region'),
       idtype: formData.get('idtype'),
-      note: formData.get('note')
+      note: (addons.length ? '【加租：' + addons.join('、') + '】 ' : '') + (formData.get('note') || '')
     };
 
     fetch('/.netlify/functions/submissions', {
@@ -813,17 +1248,17 @@
         formSuccess.style.display = 'block';
         formSuccess.scrollIntoView({behavior:'smooth', block:'start'});
       } else {
-        alert('送出失敗，請檢查網路連線後再試一次，或直接透過 LINE 聯繫我們。');
+        alert('哎呀，表單沒送成功。檢查一下網路再試一次，或直接到 LINE 找我們。');
       }
     }).catch(() => {
-      alert('送出失敗，請檢查網路連線後再試一次，或直接透過 LINE 聯繫我們。');
+      alert('哎呀，表單沒送成功。檢查一下網路再試一次，或直接到 LINE 找我們。');
     });
   });
 
   // ---- embedded admin panel ----
   const ADMIN_PASSWORD = '1010';
-  let admBookedDates = { s23: [], vivo: [] };
-  let admCurrentDevice = 's23';
+  let admBookedDates = { pro: [], ultra: [] };
+  let admCurrentDevice = 'pro';
   let admViewDate = new Date();
 
   document.getElementById('adminToggleBtn').addEventListener('click', () => {
@@ -851,7 +1286,7 @@
       const res = await fetch('/.netlify/functions/get-bookings');
       if(res.ok){
         const data = await res.json();
-        if(data && data.s23 && data.vivo) admBookedDates = JSON.parse(JSON.stringify(data));
+        if(data && data.pro && data.ultra) admBookedDates = JSON.parse(JSON.stringify(data));
       }
     } catch(err){ /* 讀取失敗就從空白開始標記 */ }
     admRenderCalendar();
@@ -902,10 +1337,10 @@
     admRenderCalendar();
   }
 
-  [document.getElementById('admTabS23'), document.getElementById('admTabVivo')].forEach(tab => {
+  [document.getElementById('admTabPro'), document.getElementById('admTabUltra')].forEach(tab => {
     tab.addEventListener('click', () => {
-      document.getElementById('admTabS23').setAttribute('aria-selected', tab.id === 'admTabS23' ? 'true' : 'false');
-      document.getElementById('admTabVivo').setAttribute('aria-selected', tab.id === 'admTabVivo' ? 'true' : 'false');
+      document.getElementById('admTabPro').setAttribute('aria-selected', tab.id === 'admTabPro' ? 'true' : 'false');
+      document.getElementById('admTabUltra').setAttribute('aria-selected', tab.id === 'admTabUltra' ? 'true' : 'false');
       admCurrentDevice = tab.dataset.device;
       admRenderCalendar();
     });
@@ -927,16 +1362,17 @@
         body: JSON.stringify({ password: ADMIN_PASSWORD, bookedDates: admBookedDates })
       });
       if(res.ok){
-        msg.textContent = '已儲存，上方的檔期確認會顯示最新資料。';
+        msg.textContent = '存好了！前台日曆已經是最新的。';
+        renderWeekStrip();
         msg.classList.add('ok');
         bookedDates = admBookedDates;
         renderCalendar();
       } else {
-        msg.textContent = '儲存失敗，請確認密碼或稍後再試一次。';
+        msg.textContent = '沒存成功，確認一下密碼或晚點再試。';
         msg.classList.add('no');
       }
     } catch(err){
-      msg.textContent = '儲存失敗，請檢查網路連線。';
+      msg.textContent = '沒存成功，檢查一下網路連線。';
       msg.classList.add('no');
     }
     msg.style.display = 'block';
@@ -974,7 +1410,7 @@
     const container = document.getElementById('admSubsList');
     container.innerHTML = '';
     if(list.length === 0){
-      container.innerHTML = '<p class="subs-empty">目前還沒有預約資料。</p>';
+      container.innerHTML = '<p class="subs-empty">還沒有人送出預約，先喝口水等一下。</p>';
       return;
     }
     list.forEach(s => {
@@ -994,7 +1430,7 @@
           <dt>起始日</dt><dd>${escapeHtml(s.startdate) || '未填'}</dd>
           <dt>天數</dt><dd>${escapeHtml(s.days) || '未填'}</dd>
           <dt>地區</dt><dd>${s.region === 'overseas' ? '國外' : '國內'}</dd>
-          <dt>證件</dt><dd>${escapeHtml(s.idtype)}</dd>
+          <dt>押金方案</dt><dd>${escapeHtml(s.idtype)}</dd>
           <dt>備註</dt><dd>${escapeHtml(s.note) || '無'}</dd>
         </dl>
         <div class="sub-actions">
@@ -1026,7 +1462,111 @@
   }
 
   document.getElementById('admRefreshSubs').addEventListener('click', admLoadSubmissions);
-</script>
 
+  // ---- info tabs: 價目與試算器 / 預約須知 / 常見問題 ----
+  function switchInfoTab(name){
+    document.querySelectorAll('.info-tab').forEach(t => t.setAttribute('aria-selected', t.dataset.panel === name ? 'true' : 'false'));
+    document.querySelectorAll('.info-panel').forEach(p => { p.hidden = (p.id !== `panel-${name}`); });
+  }
+  document.querySelectorAll('.info-tab').forEach(t => {
+    t.addEventListener('click', () => switchInfoTab(t.dataset.panel));
+  });
+  document.querySelectorAll('a[data-tab]').forEach(a => {
+    a.addEventListener('click', () => switchInfoTab(a.dataset.tab));
+  });
+
+  // ---- price calculator ----
+  function recalcCalculator(){
+    const checks = document.querySelectorAll('#calcItems input[type="checkbox"]');
+    const daysInput = document.getElementById('calcDays');
+    const days = Math.max(1, parseInt(daysInput.value, 10) || 1);
+    daysInput.value = days;
+
+    let anyPhoneChecked = false;
+    checks.forEach(c => {
+      if((c.dataset.key === 'pro' || c.dataset.key === 'ultra') && c.checked) anyPhoneChecked = true;
+    });
+
+    // 鏡頭的單價會隨「是否有勾選手機」即時反映，不論自己有沒有被勾選
+    checks.forEach(c => {
+      if(c.dataset.combo){
+        const price = anyPhoneChecked ? Number(c.dataset.combo) : Number(c.dataset.solo);
+        const priceEl = c.closest('.calc-item').querySelector('.calc-item-price');
+        if(priceEl) priceEl.textContent = `NT$${price} / 日`;
+        const subEl = c.closest('.calc-item').querySelector('.calc-item-sub');
+        if(subEl){
+          subEl.textContent = anyPhoneChecked
+            ? `配合手機：$${c.dataset.combo}/日（合租價，賺到！）`
+            : `單獨租用：$${c.dataset.solo}/日`;
+        }
+      }
+    });
+
+    let dailyTotal = 0;
+    let handleFee = 0;
+    checks.forEach(c => {
+      if(!c.checked) return;
+      if(c.dataset.rate){
+        dailyTotal += Number(c.dataset.rate);
+      } else if(c.dataset.combo){
+        dailyTotal += anyPhoneChecked ? Number(c.dataset.combo) : Number(c.dataset.solo);
+      } else if(c.dataset.flat){
+        handleFee += Number(c.dataset.flat);
+      }
+    });
+
+    let discountRate = 1;
+    let discountLabel = '還沒到，加油';
+    if(days >= 5){ discountRate = 0.9; discountLabel = '滿 5 天，9 折！'; }
+    else if(days >= 3){ discountRate = 0.95; discountLabel = '滿 3 天，95 折'; }
+
+    const subtotal = Math.round(dailyTotal * days * discountRate);
+    const total = subtotal + handleFee;
+
+    document.getElementById('calcDaily').textContent = `NT$${dailyTotal.toLocaleString()}`;
+    document.getElementById('calcDaysOut').textContent = `${days} 天`;
+    document.getElementById('calcDiscount').textContent = discountLabel;
+    document.getElementById('calcTotal').textContent = total.toLocaleString();
+
+    const handleRow = document.getElementById('calcHandleRow');
+    if(handleFee > 0){
+      handleRow.style.display = 'flex';
+      document.getElementById('calcHandleFee').textContent = `NT$${handleFee.toLocaleString()}`;
+    } else {
+      handleRow.style.display = 'none';
+    }
+  }
+
+  document.querySelectorAll('#calcItems input[type="checkbox"]').forEach(c => {
+    c.addEventListener('change', recalcCalculator);
+  });
+  document.getElementById('calcDays').addEventListener('input', recalcCalculator);
+  document.getElementById('calcDayMinus').addEventListener('click', () => {
+    const el = document.getElementById('calcDays');
+    el.value = Math.max(1, (parseInt(el.value, 10) || 1) - 1);
+    recalcCalculator();
+  });
+  document.getElementById('calcDayPlus').addEventListener('click', () => {
+    const el = document.getElementById('calcDays');
+    el.value = (parseInt(el.value, 10) || 1) + 1;
+    recalcCalculator();
+  });
+
+  recalcCalculator();
+
+  document.getElementById('calcBook').addEventListener('click', () => {
+    const on = k => document.querySelector(`#calcItems input[data-key="${k}"]`).checked;
+    const dev = document.getElementById('device');
+    if(on('pro') && on('ultra')) dev.value = 'Pro 跟 Ultra 兩支都租';
+    else if(on('pro')) dev.value = 'vivo X300 Pro';
+    else if(on('ultra')) dev.value = 'vivo X300 Ultra';
+    document.getElementById('days').value = document.getElementById('calcDays').value;
+    ['lens200','lens400','handle'].forEach(k => {
+      const f = document.querySelector(`#bookingForm input[name="addons"][data-key="${k}"]`);
+      if(f) f.checked = on(k);
+    });
+    document.getElementById('booking').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+</script>
 </body>
 </html>
